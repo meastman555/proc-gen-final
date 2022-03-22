@@ -24,6 +24,7 @@ public class RoomGenerator : MonoBehaviour
     [SerializeField] private int recursionDepth;
     [SerializeField] private float xOffset;
     [SerializeField] private float yOffset;
+    [SerializeField] private int maxTries;
 
     [Header("Starting Parameters")]
     [SerializeField] private GameObject startingRoom;
@@ -40,8 +41,21 @@ public class RoomGenerator : MonoBehaviour
     private GameObject[,] rooms;
     private RoomGrammar roomGrammar;
 
+    //wipes the current room layout and creates infrastructure needed before creating a new one
+    public void Reset() {
+        foreach(Transform child in roomContainerObject.transform) {
+            Destroy(child.gameObject);
+        }
+        BeginGeneration();
+    }
+
     void Start()
 	{
+        Reset();
+    }
+
+    //kicks off generation after the current rooms have been cleared
+    private void BeginGeneration() {
         roomGrammar = GetComponent<RoomGrammar>();
         //some offsets here to account for the buffer around the actual grid (determines when a barrier room should be placed to stop branch)
         rooms = new GameObject[width + 2, height + 2];
@@ -58,7 +72,7 @@ public class RoomGenerator : MonoBehaviour
     //-- if the next placed room would be in a spot that already has a room (multiple shared openings that create a loop), don't place anything and move on (end recursion)
     //-- if this iteration would exceed the specified recursion depth, don't do anything
     //the way the indecies and bounds are set up, there should never be an out of bound error on the array, but I'm not using assert statements nor proofs so this is more anecdoatal. find a way to guarantee?
-    void recursivelyGenerateNextRoom(int currentDepth, GameObject currentRoom, int currentXPos, int currentYPos) {
+    private void recursivelyGenerateNextRoom(int currentDepth, GameObject currentRoom, int currentXPos, int currentYPos) {
         RoomData roomData = currentRoom.GetComponent<RoomData>();
         //depth check, make sure all the openings of the current room are closed and end branching
         if(currentDepth > recursionDepth) {
@@ -142,14 +156,10 @@ public class RoomGenerator : MonoBehaviour
         GameObject nextRoomPrefab = listOfPossibleRooms[roomIndex];
         //ensures that there will not be an immediate dead end on a room that should branch
         //just re-pick a room until one works (probably not great practice but there are only 8 choices and only one invalid one so it shouldn't take long)
-        ArrayList failedIndices = new ArrayList();
-        while(!fitFunction(nextRoomPrefab, currentXPos + dx, currentYPos + dy)) { 
-            failedIndices.Add(roomIndex);
+        int currentTries = 0;
+        while(!fitFunction(nextRoomPrefab, currentXPos + dx, currentYPos + dy) && currentTries < maxTries) { 
+            currentTries++;
             roomIndex = Random.Range(0, listOfPossibleRooms.Length);
-            //TODO: is this needed? less expensive to calculate a new index than it is to look through all the rooms and neighbors (I think... .Contains() is O(N) though...) which is unnecessary for already tried rooms 
-            while(failedIndices.Contains(roomIndex)) {
-                roomIndex = Random.Range(0, listOfPossibleRooms.Length);
-            }
             nextRoomPrefab = listOfPossibleRooms[roomIndex];
         }
 

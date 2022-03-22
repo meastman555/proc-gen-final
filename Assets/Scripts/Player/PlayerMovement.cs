@@ -4,7 +4,7 @@ using UnityEngine;
 
 //some easy ported over movement code from a previous game jam to test room navigation and collision
 [RequireComponent(typeof(Rigidbody2D))]
-public class TwoDMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float speed = 10.0f;
 
