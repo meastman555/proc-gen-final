@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Depth-first recursive backtracking Wang Tile implementation with both first-fit and best-fit tile algorithms
-//A grammar is applied to each room once the tile is picked, to give it some variety on generation by assigning a room type
+//depth-first recursive backtracking Wang Tile implementation with both first-fit and best-fit tile algorithms
+//a grammar is applied to each room once the tile is picked, to give it some variety on generation by assigning a room type
 
 //TODO for use in final project
 //--clean up code and comments
@@ -24,7 +24,7 @@ public class RoomGenerator : MonoBehaviour
     [SerializeField] private int recursionDepth;
     [SerializeField] private float xOffset;
     [SerializeField] private float yOffset;
-    [SerializeField] private int maxTries;
+    [SerializeField] private int maxFitTries;
 
     [Header("Starting Parameters")]
     [SerializeField] private GameObject startingRoom;
@@ -41,12 +41,12 @@ public class RoomGenerator : MonoBehaviour
     private GameObject[,] rooms;
     private RoomGrammar roomGrammar;
 
-    //wipes the current room layout and creates infrastructure needed before creating a new one
+    //wipes the current room layout and creates infrastructure needed before creating a new one (effectively acts as Start)
     public void Reset() {
         foreach(Transform child in roomContainerObject.transform) {
             Destroy(child.gameObject);
         }
-        BeginGeneration();
+        GenerateLayout();
     }
 
     void Start()
@@ -55,7 +55,7 @@ public class RoomGenerator : MonoBehaviour
     }
 
     //kicks off generation after the current rooms have been cleared
-    private void BeginGeneration() {
+    private void GenerateLayout() {
         roomGrammar = GetComponent<RoomGrammar>();
         //some offsets here to account for the buffer around the actual grid (determines when a barrier room should be placed to stop branch)
         rooms = new GameObject[width + 2, height + 2];
@@ -149,19 +149,22 @@ public class RoomGenerator : MonoBehaviour
     }
 
     //picks a random room prefab based from the ones specified
-    //TODO: I think something is still hanging up here very, very rarely? Not sure what, but this is the only place in generation I use a while loop so it has to be here lol
     private GameObject pickRoom(GameObject[] listOfPossibleRooms, System.Func<GameObject, int, int, bool> fitFunction, int currentXPos, int currentYPos, int dx, int dy) {
         //picks a room from possibilities!
         int roomIndex = Random.Range(0, listOfPossibleRooms.Length);
         GameObject nextRoomPrefab = listOfPossibleRooms[roomIndex];
         //ensures that there will not be an immediate dead end on a room that should branch
         //just re-pick a room until one works (probably not great practice but there are only 8 choices and only one invalid one so it shouldn't take long)
-        int currentTries = 0;
-        while(!fitFunction(nextRoomPrefab, currentXPos + dx, currentYPos + dy) && currentTries < maxTries) { 
-            currentTries++;
+        int currentFitTries = 0;
+        while(!fitFunction(nextRoomPrefab, currentXPos + dx, currentYPos + dy) && currentFitTries < maxFitTries) { 
+            currentFitTries++;
             roomIndex = Random.Range(0, listOfPossibleRooms.Length);
             nextRoomPrefab = listOfPossibleRooms[roomIndex];
         }
+        //if for some reason tries are exhausted, this looks like it leads to an error in generation
+        //this previously caused infinite while loop, now it seems to create some paths that are never capped off, or wall off openings that shouldn't be
+        //however, increasing the max tries pretty high seems to greatly reduce the times it occurs -- might be the random indices are being regenerted a ton
+        //TODO: find root of problem and a better way to fix
 
         return nextRoomPrefab;
     }

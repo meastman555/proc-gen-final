@@ -214,14 +214,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3850775401453176158, guid: 85b4802af2b8f3c42ae73dfa9f6e1581, type: 3}
-      propertyPath: maxTries
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 3850775401453176158, guid: 85b4802af2b8f3c42ae73dfa9f6e1581, type: 3}
-      propertyPath: startingRoom
-      value: 
-      objectReference: {fileID: 6724744035663086668, guid: 88ef20eaf9920ba44803dc3cb85fa780, type: 3}
-    - target: {fileID: 3850775401453176158, guid: 85b4802af2b8f3c42ae73dfa9f6e1581, type: 3}
       propertyPath: roomContainerObject
       value: 
       objectReference: {fileID: 1549058753}
@@ -346,14 +338,6 @@ PrefabInstance:
     - target: {fileID: 6230373470729931260, guid: dfdd01aeec0d11643bfd5d0dcb8832be, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6230373470729931263, guid: dfdd01aeec0d11643bfd5d0dcb8832be, type: 3}
-      propertyPath: speed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6893470957322811516, guid: dfdd01aeec0d11643bfd5d0dcb8832be, type: 3}
-      propertyPath: bulletSpeed
-      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfdd01aeec0d11643bfd5d0dcb8832be, type: 3}

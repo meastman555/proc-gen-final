@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//tracks any and all user input during the game
-//currently does not include anything in the main menu
+//tracks any and all user input during the game, excluding anything GUI related
 //uses delegates to have the actual logic be handled in the classes it needs to be -- this is just the manager
 //this leads it to be super modular and functionality can be easily added in
 public class UserInput : MonoBehaviour
@@ -21,20 +20,13 @@ public class UserInput : MonoBehaviour
         roomGenerator = roomGeneration.GetComponent<RoomGenerator>();
     }
 
-    //non-physics sensitive input, such as debug actions
+    //TODO: if there are any weird bugs, worth putting physics stuff in FixedUpdate and separating that from the input (through booleans or states)
     void Update() {
         CheckGenerationReset();
         UpdatePlayerRotation();
-        //TODO: forgot that input blocks each other when in fixed-update (some are missed), so maybe move back to the state/boolean system?
         CheckPlayerMovement();
         CheckPlayerFire();
         //TODO: check other debug things and potentially a pause menu, etc.
-    }
-
-    //physics sensitive input, such as player movement
-    void FixedUpdate() {
-        // CheckPlayerMovement();
-        // CheckPlayerFire();
     }
 
     private void CheckGenerationReset() {
@@ -43,7 +35,7 @@ public class UserInput : MonoBehaviour
         }
     }
     private void UpdatePlayerRotation() {
-        playerMove.RotateToCursor();
+        playerFire.AimAtMouse();
     }
 
     private void CheckPlayerFire() {

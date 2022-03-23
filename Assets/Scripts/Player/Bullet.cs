@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
         Debug.Log("colliding! with: " + other.gameObject.tag);
     
         if(other.gameObject.tag == "Enemy") {
-            //TODO: call enemy callback to handle logic before destroying
+            //TODO: call enemy delegate function to handle logic before destroying
             Debug.Log("bullet hit enemy!");
         }
         Destroy(this.gameObject);

@@ -50,7 +50,8 @@ MonoBehaviour:
   recursionDepth: 5
   xOffset: 23
   yOffset: 23
-  startingRoom: {fileID: 6724744035663086668, guid: 31811a1d08afbfa4e90ed25973338231, type: 3}
+  maxFitTries: 100
+  startingRoom: {fileID: 6724744035663086668, guid: 88ef20eaf9920ba44803dc3cb85fa780, type: 3}
   startingXCoord: 12
   startingYCoord: 12
   upOpeningRooms:
