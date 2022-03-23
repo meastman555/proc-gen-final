@@ -2,20 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO: handles the action of the player firing their gun
-//mouse input is tracked via user input manager, but the actual logic is handled here
-//instantiates bullet, etc. when player fires
 public class PlayerFire : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Transform muzzle;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private float bulletSpeed;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void FireShot() {
+        //TODO: rotation is 90 degrees off, but I don't think it's as simple as adding to the z in quarternion
+        GameObject instantiatedBullet = Instantiate(bulletPrefab, muzzle.position, transform.rotation);
+        instantiatedBullet.GetComponent<Rigidbody2D>().velocity = transform.right * bulletSpeed;
     }
 }

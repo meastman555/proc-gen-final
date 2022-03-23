@@ -46,7 +46,6 @@ public class PlayerMovement : MonoBehaviour
     //all the 3d rotation stuff I was trying with Quarternions and LookAt (based on my knowledge of cameras from graphics) was wonky when trying to go back to Unity 2d
     //so I opted to use this solution that is all over the internet (the camera rotation save/restore is my own addition)
     public void RotateToCursor() {
-        Debug.Log("Player right vector (2D forward) before rotation: " + transform.right);
         Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
         Vector3 dir = Input.mousePosition - pos;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

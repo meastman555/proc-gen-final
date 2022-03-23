@@ -12,33 +12,43 @@ public class UserInput : MonoBehaviour
     [SerializeField] private GameObject roomGeneration;
 
     private PlayerMovement playerMove;
+    private PlayerFire playerFire;
     private RoomGenerator roomGenerator;
 
     void Start() {
         playerMove = player.GetComponent<PlayerMovement>();
+        playerFire = player.GetComponent<PlayerFire>();
         roomGenerator = roomGeneration.GetComponent<RoomGenerator>();
     }
 
     //non-physics sensitive input, such as debug actions
     void Update() {
         CheckGenerationReset();
-        //TODO: check other debug things and potentially a pause menu, etc.
-        //mouse position will be here I think
         UpdatePlayerRotation();
+        //TODO: forgot that input blocks each other when in fixed-update (some are missed), so maybe move back to the state/boolean system?
+        CheckPlayerMovement();
+        CheckPlayerFire();
+        //TODO: check other debug things and potentially a pause menu, etc.
     }
 
-    private void UpdatePlayerRotation() {
-        playerMove.RotateToCursor();
-    }
     //physics sensitive input, such as player movement
     void FixedUpdate() {
-        CheckPlayerMovement();
-        //TODO: check player fire, I think that will end up being physics based (but is the actual action of firing physics or just the bullet on it's own?)
+        // CheckPlayerMovement();
+        // CheckPlayerFire();
     }
 
     private void CheckGenerationReset() {
         if(Input.GetKeyDown(KeyCode.R)) {
             roomGenerator.Reset();
+        }
+    }
+    private void UpdatePlayerRotation() {
+        playerMove.RotateToCursor();
+    }
+
+    private void CheckPlayerFire() {
+        if(Input.GetKeyDown(KeyCode.Space)) {
+            playerFire.FireShot();
         }
     }
 
