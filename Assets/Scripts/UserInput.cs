@@ -23,12 +23,17 @@ public class UserInput : MonoBehaviour
     void Update() {
         CheckGenerationReset();
         //TODO: check other debug things and potentially a pause menu, etc.
+        //mouse position will be here I think
+        UpdatePlayerRotation();
     }
 
+    private void UpdatePlayerRotation() {
+        playerMove.RotateToCursor();
+    }
     //physics sensitive input, such as player movement
     void FixedUpdate() {
         CheckPlayerMovement();
-        //TODO: check player fire, I think that will end up being physics based
+        //TODO: check player fire, I think that will end up being physics based (but is the actual action of firing physics or just the bullet on it's own?)
     }
 
     private void CheckGenerationReset() {

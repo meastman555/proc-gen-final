@@ -60,7 +60,7 @@ public class RoomGenerator : MonoBehaviour
         //some offsets here to account for the buffer around the actual grid (determines when a barrier room should be placed to stop branch)
         rooms = new GameObject[width + 2, height + 2];
         //sets up starting room (fencepost) and kicks off recursion
-        GameObject instantiatedStartingRoom = Instantiate(startingRoom, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
+        GameObject instantiatedStartingRoom = Instantiate(startingRoom, new Vector3(0.0f, 0.0f, 5.0f), Quaternion.identity);
         instantiatedStartingRoom.transform.SetParent(roomContainerObject.transform);
         rooms[startingXCoord + 1, startingYCoord + 1] = instantiatedStartingRoom;
         recursivelyGenerateNextRoom(1, instantiatedStartingRoom, startingXCoord + 1, startingYCoord + 1);
