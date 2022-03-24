@@ -39,7 +39,7 @@ public class UserInput : MonoBehaviour
     }
 
     private void CheckPlayerFire() {
-        if(Input.GetKeyDown(KeyCode.Space)) {
+        if(Input.GetMouseButtonDown(0)) {
             playerFire.FireShot();
         }
     }
