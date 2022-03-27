@@ -51,7 +51,7 @@ public class WangTiles : MonoBehaviour
         downDir = new Direction(0, 1, upOpeningRoomPrefabs);
     }
 
-    //kicks off the entire generation of a blank layout -- this is called from RoomGenerator.cs
+    //kicks off the entire generation of a blank layout -- this is called in RoomGenerator.cs
     //the only public function
     public void GenerateRooms(Transform roomContainer, GameObject[,] rooms, int startX, int startY) {
         layoutWidth = rooms.GetLength(0);
