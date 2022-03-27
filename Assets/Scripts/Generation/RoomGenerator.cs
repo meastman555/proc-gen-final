@@ -20,6 +20,7 @@ public class RoomGenerator : MonoBehaviour
 
     private WangTiles wang;
     private RoomGrammar grammar;
+    private EnemySpawner enemySpawner;
 
     //internal storage of rooms, adds in a buffer so need to adjust some variables
     //TODO: move this to just be within wang? So far it's not used anywhere else
@@ -29,6 +30,7 @@ public class RoomGenerator : MonoBehaviour
     void Start() {
         wang = GetComponent<WangTiles>();
         grammar = GetComponent<RoomGrammar>();
+        enemySpawner = GetComponent<EnemySpawner>();
 
         adjustedWidth = width + 2;
         adjustedHeight = height + 2;
@@ -68,7 +70,10 @@ public class RoomGenerator : MonoBehaviour
 
     //TODO: implement! handles spawning logic for enemies in the enemy type rooms
     private void GenerateEnemies() {
-
+        //from grammar generation, if there is a room type of "Enemy" this container object is guaranteed to exist
+        //if it does not, GenerateAllEnemies won't do anything
+        GameObject enemyRoomContainer = GameObject.Find("EnemyRooms");
+        enemySpawner.GenerateAllEnemies(enemyRoomContainer);
     }
 
     //TODO: implement! handles spawning logic for objects (power-ups, etc...) in item/object type rooms

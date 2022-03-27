@@ -25,8 +25,7 @@ public class RoomGrammar : MonoBehaviour
     private List<GameObject> subContainers;
 
     //Awake vs Start so that the grammar can be initialized before they're attempted to be used when RoomGeneration kicks off the process
-    void Awake()
-    {
+    void Awake() {
         roomTypesGrammar = new List<string>();
         roomTypesDict = CreateDict();
         allRooms = new List<GameObject>();
@@ -50,6 +49,7 @@ public class RoomGrammar : MonoBehaviour
     }
 
     //kicks off the placement of roomtypes -- this is called in RoomGenerator.cs
+    //only public function
     public void AssignRoomTypes(Transform roomContainer) {
         CaptureAllRooms(roomContainer);
         CreateTypeContainers(roomContainer);
@@ -87,7 +87,7 @@ public class RoomGrammar : MonoBehaviour
         int grammarIndex = Random.Range(0, roomTypesGrammar.Count);
         string rtName = roomTypesGrammar[grammarIndex];
         RoomType rt = roomTypesDict[rtName];
-        
+
         room.GetComponent<RoomData>().roomTypeName = rtName;
         //TODO: colors are debug so remove this once it's taken out later
         room.GetComponent<SpriteRenderer>().color = rt.color;
