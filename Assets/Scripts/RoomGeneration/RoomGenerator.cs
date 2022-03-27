@@ -24,7 +24,7 @@ public class RoomGenerator : MonoBehaviour
     [SerializeField] private int recursionDepth;
     [SerializeField] private float xOffset;
     [SerializeField] private float yOffset;
-    [SerializeField] private int maxFitTries;
+    [SerializeField] private int maxFitTries = 100;
 
     [Header("Starting Parameters")]
     [SerializeField] private GameObject startingRoom;

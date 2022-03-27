@@ -8,21 +8,28 @@ public class NewRoomGenerator : MonoBehaviour
     //X max
     [SerializeField] private int width;
     //Y max
-    [SerializeField] private int height;
-    
+    [SerializeField] private int height;    
+    //middle of grid is not (0,0), it's (width/2, height/2)
+    [SerializeField] private int startX;
+    [SerializeField] private int startY;
+
     private int adjustedWidth;
     private int adjustedHeight;
+
+    private int adjustedStartX;
+    private int adjustedStartY;
 
     private WangTiles wang;
     //internal storage of rooms, adds in a buffer so need to adjust some variables
     private GameObject[,] rooms;
-
 
     void Start() {
         wang = GetComponent<WangTiles>();
 
         adjustedWidth = width + 2;
         adjustedHeight = height + 2;
+        adjustedStartX = startX + 1;
+        adjustedStartY = startY + 1;
 
         ResetAll();
     }
@@ -47,7 +54,7 @@ public class NewRoomGenerator : MonoBehaviour
     //rooms is passed by reference to wang tiles, and it's where the final layout ends up internally
     //in the game/editor, rooms are in the container parent object
     private void GenerateBaseLayout() {
-        wang.GenerateRooms(roomContainer, rooms);
+        wang.GenerateRooms(roomContainer, rooms, adjustedStartX, adjustedStartY);
     }
 
     //TODO: implement! passes all the blank tiles through the room type grammar
