@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewRoomGrammar : MonoBehaviour
+public class RoomGrammar : MonoBehaviour
 {
     //encapsulates data pertaining to a roomtype, all editor-specified
     [System.Serializable]
@@ -19,7 +19,7 @@ public class NewRoomGrammar : MonoBehaviour
     private List<string> roomTypesGrammar;
     //makes for easy lookup, avoid a "find" function
     private Dictionary<string, RoomType> roomTypesDict;
-    
+
     //since sub-containers will be created to store rooms of each type (for organization and later spawning), keep separate reference of actual rooms
     private List<GameObject> allRooms;
     private List<GameObject> subContainers;
@@ -50,7 +50,6 @@ public class NewRoomGrammar : MonoBehaviour
     }
 
     //kicks off the placement of roomtypes -- this is called in RoomGenerator.cs
-    //the only public function
     public void AssignRoomTypes(Transform roomContainer) {
         CaptureAllRooms(roomContainer);
         CreateTypeContainers(roomContainer);
@@ -75,7 +74,6 @@ public class NewRoomGrammar : MonoBehaviour
         }
     }
 
-    //TODO: find something more efficient than this to organize them? trying to avoid O(N) find 
     private void AssignAllRoomsAndOrganize() {
         foreach(GameObject room in allRooms) {
             AssignSingleRoom(room);
@@ -89,9 +87,11 @@ public class NewRoomGrammar : MonoBehaviour
         int grammarIndex = Random.Range(0, roomTypesGrammar.Count);
         string rtName = roomTypesGrammar[grammarIndex];
         RoomType rt = roomTypesDict[rtName];
-
-        room.GetComponent<SpriteRenderer>().color = rt.color;
+        
         room.GetComponent<RoomData>().roomTypeName = rtName;
+        //TODO: colors are debug so remove this once it's taken out later
+        room.GetComponent<SpriteRenderer>().color = rt.color;
+
     }
 
     //puts the room into the corresponding subcontainer based on type

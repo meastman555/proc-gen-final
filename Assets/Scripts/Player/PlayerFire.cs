@@ -12,9 +12,9 @@ public class PlayerFire : MonoBehaviour
     private Transform childCamera;
     private Quaternion staticCameraRotation;
 
-    // Start is called before the first frame update
     void Start()
     {
+        //0 can be hardcoded since camera is first child in the prefab
         childCamera = transform.GetChild(0);
         staticCameraRotation = childCamera.transform.rotation;
     }
@@ -32,7 +32,7 @@ public class PlayerFire : MonoBehaviour
     }
 
     public void FireShot() {
-        //TODO: rotation is 90 degrees off, but I don't think it's as simple as adding to the z in quarternion
+        //TODO: rotation is 90 degrees off, but I don't think it's as simple as adding to the z in quarternion?
         GameObject instantiatedBullet = Instantiate(bulletPrefab, bulletOrigin.position, transform.rotation);
         instantiatedBullet.GetComponent<Rigidbody2D>().velocity = transform.right * bulletSpeed;
     }

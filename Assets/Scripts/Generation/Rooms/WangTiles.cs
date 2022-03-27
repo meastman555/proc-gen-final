@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//depth-first recursive backtracking Wang Tile implementation with both first-fit and best-fit tile algorithms
 
 //TODO: refactor more! still some things that could be cleaned up
 //TODO: fix the generation bug (still not too sure why it's happening) 

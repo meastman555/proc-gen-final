@@ -13,21 +13,13 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    //TODO: add other things like animations?
-    public void MoveUp() { 
-        rb.velocity = Vector2.up * moveSpeed; 
+    //TODO: add other things like animations? sound effects?
+    public void MoveVertically(int dir) {
+        rb.velocity = Vector2.up * moveSpeed * dir;
     }
 
-    public void MoveDown() { 
-        rb.velocity = Vector2.down * moveSpeed; 
-    }
-
-    public void MoveLeft() { 
-        rb.velocity = Vector2.left * moveSpeed; 
-    }
-
-    public void MoveRight() { 
-        rb.velocity = Vector2.right * moveSpeed; 
+    public void MoveHorizontally(int dir) {
+        rb.velocity = Vector2.right * moveSpeed * dir;
     }
 
     public void StopMoving() { 

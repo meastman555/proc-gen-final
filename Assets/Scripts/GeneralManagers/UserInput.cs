@@ -22,16 +22,17 @@ public class UserInput : MonoBehaviour
 
     //TODO: if there are any weird bugs, worth putting physics stuff in FixedUpdate and separating that from the input (through booleans or states)
     void Update() {
-        CheckGenerationReset();
+        //CheckGenerationReset();
         UpdatePlayerRotation();
         CheckPlayerMovement();
         CheckPlayerFire();
         //TODO: check other debug things and potentially a pause menu, etc.
     }
 
+    //TODO: this was causing problems with the grammar. def fixable, but since this is just for debug purposes come back to it later
     private void CheckGenerationReset() {
         if(Input.GetKeyDown(KeyCode.R)) {
-            roomGenerator.Reset();
+            roomGenerator.ResetAll();
         }
     }
     private void UpdatePlayerRotation() {
@@ -46,16 +47,16 @@ public class UserInput : MonoBehaviour
 
     private void CheckPlayerMovement() {
         if(Input.GetKey(KeyCode.W)) {
-            playerMove.MoveUp();
+            playerMove.MoveVertically(1);
         }
         else if(Input.GetKey(KeyCode.S)) {
-            playerMove.MoveDown();
+            playerMove.MoveVertically(-1);
         }
         else if(Input.GetKey(KeyCode.A)) {
-            playerMove.MoveLeft();
+            playerMove.MoveHorizontally(-1);
         }
         else if(Input.GetKey(KeyCode.D)) {
-            playerMove.MoveRight();
+            playerMove.MoveHorizontally(1);
         }
         else {
             playerMove.StopMoving();

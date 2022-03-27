@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewRoomGenerator : MonoBehaviour
+public class RoomGenerator : MonoBehaviour
 {
     [SerializeField] private Transform roomContainer;
     //X max
@@ -19,7 +19,7 @@ public class NewRoomGenerator : MonoBehaviour
     private int adjustedStartY;
 
     private WangTiles wang;
-    private NewRoomGrammar grammar;
+    private RoomGrammar grammar;
 
     //internal storage of rooms, adds in a buffer so need to adjust some variables
     //TODO: move this to just be within wang? So far it's not used anywhere else
@@ -28,7 +28,7 @@ public class NewRoomGenerator : MonoBehaviour
 
     void Start() {
         wang = GetComponent<WangTiles>();
-        grammar = GetComponent<NewRoomGrammar>();
+        grammar = GetComponent<RoomGrammar>();
 
         adjustedWidth = width + 2;
         adjustedHeight = height + 2;
@@ -54,15 +54,14 @@ public class NewRoomGenerator : MonoBehaviour
         //TODO: add any other needed generation layers!
     }
 
-    //generates just the blank tiles for structure
-    //rooms is passed by reference to wang tiles, and it's where the final layout ends up internally
-    //in the game/editor, rooms are in the container parent object
+    //generates just the blank tiles for structure -- uses depth-first recursive backtracking Wang Tile implementation with both first-fit and best-fit tile algorithms
+    //rooms is passed by reference to wang tiles, and it's where the final layout ends up internally, in the editor they're subdivided under roomContainer object
     private void GenerateBaseLayout() {
         wang.GenerateRooms(roomContainer, rooms, adjustedStartX, adjustedStartY);
     }
 
-    //TODO: implement! passes all the blank tiles through the room type grammar
-    //this may be able to be implementd in GenerateBaseLayout if it proves to not be necessary or minimal work
+    //passes all the blank tiles through the room type grammar
+    //linearly assigns the room types with no context of surrounding rooms' types
     private void PassRoomsThroughGrammar() {
         grammar.AssignRoomTypes(roomContainer);
     }
