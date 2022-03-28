@@ -5,7 +5,6 @@ using UnityEngine;
 //a small grammer that is used to translate english positions to in-game coordiantes
 public class SpawnGrammar : MonoBehaviour
 {
-
     [SerializeField] private float roomWidth;
     [SerializeField] private float roomHeight;
 
@@ -25,7 +24,6 @@ public class SpawnGrammar : MonoBehaviour
         horizontal = new string[] {"left", "middle", "right"};
         //jagged array stuff to get around weird C# compiling requirements
         grammar = new string[][] {vertical, horizontal};
-
     }
 
     //returns an english position from the grammar

@@ -16,6 +16,6 @@ public class RoomData : MonoBehaviour
     //type data
     public string roomTypeName;
     public int numEnemies;
-    public int numObjects;
+    public int numItems;
 
 }

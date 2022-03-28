@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7579003841289470632}
   - component: {fileID: 6378083245327077267}
   - component: {fileID: 177214882064903597}
+  - component: {fileID: 3674315930001678948}
   m_Layer: 0
   m_Name: GenerationManager
   m_TagString: Untagged
@@ -157,3 +158,19 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 8525396540103476416, guid: 318c01cce60872d40ab917b7a57cda56, type: 3}
     minPerRoom: 1
     maxPerRoom: 4
+--- !u!114 &3674315930001678948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7579003841289470628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5744a26deb1b9a94f86009c087dca3a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemTypes:
+  - {fileID: 6929036587888834258, guid: e23b757f24155714fb4b8b8808697e17, type: 3}
+  - {fileID: 5664283029535667431, guid: 3452b28b53c05a6419b3a750a2d46d3f, type: 3}
+  - {fileID: 8419897386358440682, guid: b641966299cd91a489c4914b38cbfb8c, type: 3}

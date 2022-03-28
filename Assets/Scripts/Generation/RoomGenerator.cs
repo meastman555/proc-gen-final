@@ -21,16 +21,19 @@ public class RoomGenerator : MonoBehaviour
     private WangTiles wang;
     private RoomGrammar grammar;
     private EnemySpawner enemySpawner;
+    private ItemSpawner itemSpawner;
+
 
     //internal storage of rooms, adds in a buffer so need to adjust some variables
     //TODO: move this to just be within wang? So far it's not used anywhere else
     //however, if say the grammar wanted to know what surrounding room types are before deciding the next room's (to prevent them from being the same, etc.) then it would be used, so wait on this change
     private GameObject[,] rooms;
-
+ 
     void Start() {
         wang = GetComponent<WangTiles>();
         grammar = GetComponent<RoomGrammar>();
         enemySpawner = GetComponent<EnemySpawner>();
+        itemSpawner = GetComponent<ItemSpawner>();
 
         adjustedWidth = width + 2;
         adjustedHeight = height + 2;
@@ -52,7 +55,7 @@ public class RoomGenerator : MonoBehaviour
         GenerateBaseLayout();
         PassRoomsThroughGrammar();
         GenerateEnemies();
-        GenerateObjects();
+        GenerateItems();
         //TODO: add any other needed generation layers!
     }
 
@@ -68,7 +71,7 @@ public class RoomGenerator : MonoBehaviour
         grammar.AssignRoomTypes(roomContainer);
     }
 
-    //TODO: implement! handles spawning logic for enemies in the enemy type rooms
+    //handles spawning logic for enemies in the enemy type rooms
     private void GenerateEnemies() {
         //from grammar generation, if there is a room type of "Enemy" this container object is guaranteed to exist
         //if it does not, GenerateAllEnemies won't do anything
@@ -76,9 +79,11 @@ public class RoomGenerator : MonoBehaviour
         enemySpawner.GenerateAllEnemies(enemyRoomContainer);
     }
 
-    //TODO: implement! handles spawning logic for objects (power-ups, etc...) in item/object type rooms
-    private void GenerateObjects() {
-
+    //TODO: implement! handles spawning logic for items (power-ups, health pickups, etc.) in item type rooms
+    private void GenerateItems() {
+        //from grammar generation, if there is a room type of "Item" this container object is guaranteed to exist
+        //if it does not, GenerateAllEnemies won't do anything
+        GameObject itemRoomContainer = GameObject.Find("ItemRooms");
+        itemSpawner.GenerateAllItems(itemRoomContainer);
     }
-
 }
