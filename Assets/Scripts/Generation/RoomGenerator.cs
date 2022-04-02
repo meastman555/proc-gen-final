@@ -40,6 +40,7 @@ public class RoomGenerator : MonoBehaviour
         adjustedStartX = startX + 1;
         adjustedStartY = startY + 1;
 
+        //this is the all important call that generates the entire level once the scene is loaded
         ResetAll();
     }
 
@@ -79,7 +80,7 @@ public class RoomGenerator : MonoBehaviour
         enemySpawner.GenerateAllEnemies(enemyRoomContainer);
     }
 
-    //TODO: implement! handles spawning logic for items (power-ups, health pickups, etc.) in item type rooms
+    //handles spawning logic for items (power-ups, health pickups, etc.) in item type rooms
     private void GenerateItems() {
         //from grammar generation, if there is a room type of "Item" this container object is guaranteed to exist
         //if it does not, GenerateAllEnemies won't do anything

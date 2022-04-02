@@ -296,6 +296,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GenerationManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7579003841289470633, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
+      propertyPath: maxRecursionDepth
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7579003841289470634, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -339,6 +343,22 @@ PrefabInstance:
     - target: {fileID: 7579003841289470634, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579003841289470635, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
+      propertyPath: width
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579003841289470635, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
+      propertyPath: height
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579003841289470635, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
+      propertyPath: startX
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579003841289470635, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
+      propertyPath: startY
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7579003841289470635, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
       propertyPath: roomContainer
