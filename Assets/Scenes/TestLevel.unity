@@ -296,6 +296,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: GenerationManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7579003841289470632, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
+      propertyPath: roomTypes.Array.data[0].easyChance
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579003841289470632, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
+      propertyPath: roomTypes.Array.data[0].hardChance
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579003841289470632, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
+      propertyPath: roomTypes.Array.data[1].easyChance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579003841289470632, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
+      propertyPath: roomTypes.Array.data[1].hardChance
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579003841289470632, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
+      propertyPath: roomTypes.Array.data[2].easyChance
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579003841289470632, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
+      propertyPath: roomTypes.Array.data[2].hardChance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579003841289470632, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
+      propertyPath: roomTypes.Array.data[0].mediumChance
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579003841289470632, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
+      propertyPath: roomTypes.Array.data[1].mediumChance
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579003841289470632, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
+      propertyPath: roomTypes.Array.data[2].mediumChance
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7579003841289470633, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
       propertyPath: maxRecursionDepth
       value: 8
@@ -346,19 +382,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7579003841289470635, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
       propertyPath: width
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7579003841289470635, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
       propertyPath: height
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7579003841289470635, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
       propertyPath: startX
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7579003841289470635, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
       propertyPath: startY
-      value: 50
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579003841289470635, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
+      propertyPath: minRoomCount
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7579003841289470635, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
       propertyPath: roomContainer

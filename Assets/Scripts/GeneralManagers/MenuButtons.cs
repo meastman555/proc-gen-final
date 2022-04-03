@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MenuButtons : MonoBehaviour
 {
     [SerializeField] private string gameSceneName;
+    [SerializeField] private TextMeshProUGUI difficultyText;
 
     //TODO: add stuff for difficulty (easy, medium, hard, ???)
     //should call another game object function (probably a singleton) that stores this difficulty
@@ -23,5 +25,20 @@ public class MenuButtons : MonoBehaviour
 
     public void QuitGame() {
         Application.Quit();
+    }
+
+    //tried an enum but couldn't get it to serialize so I couldn't include it as passed parameter on menu button click callback (this function didn't pop up)
+    public void SetDifficulty(string d) {
+        difficultyText.text = "Select Difficulty: " + d;
+
+        //default difficulty is medium
+        InitialSettingsSingleton.Difficulty diff = InitialSettingsSingleton.Difficulty.Medium;
+        if(d == "Easy") {
+            diff = InitialSettingsSingleton.Difficulty.Easy;
+        }
+        else if(d == "Hard") {
+            diff = InitialSettingsSingleton.Difficulty.Hard;
+        }
+        InitialSettingsSingleton.Instance.SetDifficulty(diff);
     }
 }

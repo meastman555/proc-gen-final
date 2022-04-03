@@ -12,6 +12,7 @@ public class RoomGenerator : MonoBehaviour
     //middle of grid is not (0,0), it's (width/2, height/2)
     [SerializeField] private int startX;
     [SerializeField] private int startY;
+    [SerializeField] private int minRoomCount;
 
     private int adjustedWidth;
     private int adjustedHeight;
@@ -64,6 +65,10 @@ public class RoomGenerator : MonoBehaviour
     //rooms is passed by reference to wang tiles, and it's where the final layout ends up internally, in the editor they're subdivided under roomContainer object
     private void GenerateBaseLayout() {
         wang.GenerateRooms(roomContainer, rooms, adjustedStartX, adjustedStartY);
+        //if wang doesn't generate enough rooms, restart and repeat until it does
+        if(roomContainer.childCount < minRoomCount) {
+            ResetAll();
+        }
     }
 
     //passes all the blank tiles through the room type grammar

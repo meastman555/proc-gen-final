@@ -8,7 +8,10 @@ public class RoomGrammar : MonoBehaviour
     [System.Serializable]
     public struct RoomType {
         public string name;
-        [Range(0, 100)] public int chance;
+        [Range(0, 100)] public int easyChance;
+        [Range(0, 100)] public int mediumChance;
+        [Range(0, 100)] public int hardChance;
+
         //TODO: remove once more art is in the game, this is just for debug
         public Color color;
     }
@@ -33,7 +36,8 @@ public class RoomGrammar : MonoBehaviour
 
         //TODO: It's a feature not a bug! If use enters say, 100% chance for two types, that will just cause them each to have 100 entries
         foreach(RoomType rt in roomTypes) {
-            for(int i = 0; i < rt.chance; i++) {
+            int diffChance = GetChanceFromDifficulty(rt);
+            for(int i = 0; i < diffChance; i++) {
                 roomTypesGrammar.Add(rt.name);
             }
         }
@@ -46,6 +50,26 @@ public class RoomGrammar : MonoBehaviour
             temp.Add(rt.name, rt);
         }
         return temp;
+    }
+
+    //each room type has a different chance of occuring based on the current difficulty
+    private int GetChanceFromDifficulty(RoomType rt) {
+        InitialSettingsSingleton.Difficulty diff = InitialSettingsSingleton.Instance.GetDifficulty();
+        switch(diff) {
+            case InitialSettingsSingleton.Difficulty.Easy: {
+                return rt.easyChance;
+            }
+            case InitialSettingsSingleton.Difficulty.Medium: {
+                return rt.mediumChance;
+            }
+            case InitialSettingsSingleton.Difficulty.Hard: {
+                return rt.hardChance;
+            }
+            //if for some reason invalid difficulty, makes medium
+            default: {
+                return rt.mediumChance;
+            }
+        }
     }
 
     //kicks off the placement of roomtypes -- this is called in RoomGenerator.cs
