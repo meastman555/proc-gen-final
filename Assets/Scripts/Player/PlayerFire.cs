@@ -12,8 +12,7 @@ public class PlayerFire : MonoBehaviour
     private Transform childCamera;
     private Quaternion staticCameraRotation;
 
-    void Start()
-    {
+    void Start() {
         //0 can be hardcoded since camera is first child in the prefab
         childCamera = transform.GetChild(0);
         staticCameraRotation = childCamera.transform.rotation;
@@ -35,5 +34,8 @@ public class PlayerFire : MonoBehaviour
         //TODO: rotation is 90 degrees off, but I don't think it's as simple as adding to the z in quarternion?
         GameObject instantiatedBullet = Instantiate(bulletPrefab, bulletOrigin.position, transform.rotation);
         instantiatedBullet.GetComponent<Rigidbody2D>().velocity = transform.right * bulletSpeed;
+        //gives the bullet damage
+        int bulletDamage = GetComponent<CombatBehavior>().CalculateDamage();
+        instantiatedBullet.GetComponent<Bullet>().SetDamage(bulletDamage);
     }
 }

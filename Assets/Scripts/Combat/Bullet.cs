@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    private int damage;
+
+    public void SetDamage(int d) {
+        damage = d;
+    }
+
     //bullet gets destroyed regardless of what it collides with
     //more complex logic needed on collision will be handled in respective game objects using delegates
     private void OnCollisionEnter2D(Collision2D other) {
         Debug.Log("colliding! with: " + other.gameObject.tag);
     
         if(other.gameObject.tag == "Enemy") {
-            //TODO: call enemy delegate function to handle logic before destroying
-            Debug.Log("bullet hit enemy!");
+            //send to enemy to handle effects of raw bullet damage
+            other.gameObject.GetComponent<CombatBehavior>().ReceiveDamage(damage);
         }
         Destroy(this.gameObject);
     }

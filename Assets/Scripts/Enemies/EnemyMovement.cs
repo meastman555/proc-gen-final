@@ -11,8 +11,7 @@ public class EnemyMovement : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    void Start()
-    {
+    void Awake() {
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(RandomMovement());
     }
@@ -36,7 +35,7 @@ public class EnemyMovement : MonoBehaviour
     //to help not get stuck on walls
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.tag == "Room") {
-            rb.AddForce(-other.relativeVelocity);
+            rb.velocity = -other.relativeVelocity;
         }    
     }
 }

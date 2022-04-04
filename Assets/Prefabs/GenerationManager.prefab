@@ -49,10 +49,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomContainer: {fileID: 0}
-  width: 25
-  height: 25
-  startX: 12
-  startY: 12
+  width: 50
+  height: 50
+  startX: 25
+  startY: 25
+  minRoomCount: 30
 --- !u!114 &7579003841289470633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a277bc5140f9f42af1af26b7c88fc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRecursionDepth: 5
+  maxRecursionDepth: 8
   maxFitTries: 100
   xOffset: 23
   yOffset: 23
@@ -120,13 +121,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomTypes:
   - name: Normal
-    chance: 40
+    easyChance: 50
+    mediumChance: 50
+    hardChance: 30
     color: {r: 1, g: 1, b: 1, a: 1}
   - name: Enemy
-    chance: 40
+    easyChance: 20
+    mediumChance: 30
+    hardChance: 60
     color: {r: 1, g: 0, b: 0, a: 1}
   - name: Item
-    chance: 20
+    easyChance: 30
+    mediumChance: 20
+    hardChance: 10
     color: {r: 0, g: 0.23127818, b: 1, a: 1}
 --- !u!114 &6378083245327077267
 MonoBehaviour:

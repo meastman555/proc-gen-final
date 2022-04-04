@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8525396540103476422}
   - component: {fileID: 8525396540103476417}
   - component: {fileID: 1182199355461747949}
+  - component: {fileID: 7841337743178351240}
   m_Layer: 0
   m_Name: BasicEnemy
   m_TagString: Enemy
@@ -147,3 +148,19 @@ MonoBehaviour:
   moveSpeed: 7
   moveTime: 1
   moveDelay: 0.1
+--- !u!114 &7841337743178351240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8525396540103476416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9da5a039c9e2074da67cc3bae656e05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseHealth: 30
+  maxExtraHealth: 7
+  baseDamage: 6
+  maxExtraDamage: 4
