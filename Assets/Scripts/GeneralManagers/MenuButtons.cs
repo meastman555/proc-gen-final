@@ -6,11 +6,18 @@ using TMPro;
 
 public class MenuButtons : MonoBehaviour
 {
+    [SerializeField] private GameObject mainSubMenu;
+    [SerializeField] private GameObject optionsSubMenu;
+    [SerializeField] private GameObject creditsSubMenu;
+    [SerializeField] private GameObject backButton;
     [SerializeField] private string gameSceneName;
     [SerializeField] private TextMeshProUGUI difficultyText;
 
     //TODO: look into how to do like an options submenu? so that hitting options would go to another UI screen with options/credits
     //or put them on main generation screen so user knows that they're worth looking in to
+    void Start() {
+        ReturnToMainMenu();
+    }
 
     //TODO: put on a delay/some kind of transition?
     public void StartGame() {
@@ -34,5 +41,13 @@ public class MenuButtons : MonoBehaviour
             diff = InitialSettingsSingleton.Difficulty.Hard;
         }
         InitialSettingsSingleton.Instance.SetDifficulty(diff);
+    }
+
+    //returns to main menu by disabling all other menus
+    public void ReturnToMainMenu() {
+        mainSubMenu.SetActive(true);
+        optionsSubMenu.SetActive(false);
+        creditsSubMenu.SetActive(false);
+        backButton.SetActive(false);
     }
 }
