@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-
     [SerializeField] private float moveSpeed;
     [SerializeField] private float moveTime;
     [SerializeField] private float moveDelay;

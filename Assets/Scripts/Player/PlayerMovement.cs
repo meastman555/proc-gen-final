@@ -26,4 +26,14 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = Vector2.zero; 
     }
 
+    public void GiveSpeedBoost(float speedMultiplier, float duration) {
+        Debug.Log("Giving player " + speedMultiplier + " speed boost multiplier for " + duration + " seconds!");
+        StartCoroutine(HandleSpeedBoost(speedMultiplier, duration));
+    }
+
+    private IEnumerator HandleSpeedBoost(float speedMultiplier, float duration) {
+        moveSpeed *= speedMultiplier;
+        yield return new WaitForSeconds(duration);
+        moveSpeed /= speedMultiplier;
+    }
 }

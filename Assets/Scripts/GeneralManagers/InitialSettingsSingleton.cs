@@ -26,7 +26,7 @@ public class InitialSettingsSingleton : MonoBehaviour
 
     //the data that needs to be persisted 
     //uses getters and setters which is kinda :/ but there's not much so it's ok
-    //TODO: more data (like generation size, depth, etc)! after assignment wednesday is met
+    //TODO: more data (like generation size, depth, etc)!
     private Difficulty difficulty;
 
     public Difficulty GetDifficulty() {

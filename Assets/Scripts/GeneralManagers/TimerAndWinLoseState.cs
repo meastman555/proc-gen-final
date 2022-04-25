@@ -20,6 +20,8 @@ public class TimerAndWinLoseState : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI enemiesRemainingText;
 
+    [SerializeField] private GameObject roomContainer;
+
     private int totalTime;
     private int totalEnemies;
 
@@ -42,6 +44,7 @@ public class TimerAndWinLoseState : MonoBehaviour
     }
 
     //calculates the number of enemies (once) to fill the text with
+    //TODO: can speed up just a bit by using the numEnemies data in RoomData (so only have to check each room and not every gameobject by tag)
     private void InitializeEnemiesText() {
         totalEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
         enemiesRemainingText.text = "Enemies Remaining: " + totalEnemies;
