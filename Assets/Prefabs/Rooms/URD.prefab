@@ -74,9 +74,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -484821597
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b2edca0260254424ea1e9a1759d9c3f7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 48dd300975985004e8cb58a49e646dc9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -124,10 +124,10 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.3851093, y: -1.8958865}
-  - {x: -1.8737237, y: -1.882341}
-  - {x: -1.8889476, y: 1.8806628}
-  - {x: -0.35209286, y: 1.8639842}
+  - {x: -0.498356, y: -1.4881983}
+  - {x: -1.4660357, y: -1.4897524}
+  - {x: -1.4661598, y: 1.4880742}
+  - {x: -0.49553868, y: 1.4864951}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -148,9 +148,9 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 1.8826809, y: -0.40501916}
-  - {x: 1.8749969, y: -1.8900894}
-  - {x: 0.3899269, y: -1.8975898}
+  - {x: 1.467443, y: -0.50316626}
+  - {x: 1.4673088, y: -1.4824011}
+  - {x: 0.5031736, y: -1.4823519}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -171,9 +171,9 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 1.8901811, y: 0.3750177}
-  - {x: 1.8974981, y: 1.8750887}
-  - {x: 0.3749261, y: 1.8975898}
+  - {x: 1.4749432, y: 0.5033639}
+  - {x: 1.4747103, y: 1.4749501}
+  - {x: 0.5108221, y: 1.4748019}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -190,9 +190,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f9849f6a42222418b0cc7c20eb421f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySprite: {fileID: 21300000, guid: 715247c3660483b409f0cbad332175a8, type: 3}
+  itemSprite: {fileID: 21300000, guid: 573a407a9cccb0f44a9ac070819747af, type: 3}
   numOpenings: 3
   upOpening: 1
   leftOpening: 0
   rightOpening: 1
   downOpening: 1
   roomTypeName: 
+  numEnemies: 0
+  numItems: 0

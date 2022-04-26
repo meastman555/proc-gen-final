@@ -68,8 +68,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxRecursionDepth: 8
   maxFitTries: 100
-  xOffset: 23
-  yOffset: 23
+  xOffset: 18
+  yOffset: 18
   startingRoomPrefab: {fileID: 6724744035663086668, guid: 88ef20eaf9920ba44803dc3cb85fa780, type: 3}
   upOpeningRoomPrefabs:
   - {fileID: 6724744035663086668, guid: 31811a1d08afbfa4e90ed25973338231, type: 3}
@@ -124,17 +124,14 @@ MonoBehaviour:
     easyChance: 50
     mediumChance: 50
     hardChance: 30
-    color: {r: 1, g: 1, b: 1, a: 1}
   - name: Enemy
     easyChance: 20
     mediumChance: 30
     hardChance: 60
-    color: {r: 1, g: 0, b: 0, a: 1}
   - name: Item
     easyChance: 30
     mediumChance: 20
     hardChance: 10
-    color: {r: 0, g: 0.23127818, b: 1, a: 1}
 --- !u!114 &6378083245327077267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,8 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b50e2eb9148c304ea869375e7f53753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomWidth: 23
-  roomHeight: 23
+  roomWidth: 18
+  roomHeight: 18
 --- !u!114 &177214882064903597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,3 +178,4 @@ MonoBehaviour:
   - {fileID: 6929036587888834258, guid: e23b757f24155714fb4b8b8808697e17, type: 3}
   - {fileID: 5664283029535667431, guid: 3452b28b53c05a6419b3a750a2d46d3f, type: 3}
   - {fileID: 8419897386358440682, guid: b641966299cd91a489c4914b38cbfb8c, type: 3}
+  - {fileID: 8419897386358440682, guid: 5ec69110e66159e4aac7f413d5b0c542, type: 3}

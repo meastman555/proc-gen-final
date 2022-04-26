@@ -5,6 +5,7 @@ using UnityEngine;
 //a small grammer that is used to translate english positions to in-game coordiantes
 public class SpawnGrammar : MonoBehaviour
 {
+    //TODO: should be the same as x/y Offset, just access those instead?
     [SerializeField] private float roomWidth;
     [SerializeField] private float roomHeight;
 

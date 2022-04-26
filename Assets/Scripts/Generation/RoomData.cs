@@ -18,4 +18,27 @@ public class RoomData : MonoBehaviour
     public int numEnemies;
     public int numItems;
 
+    //alternate sprites (used to give the room the proper look depending on grammar type)
+    //all rooms start out at normal so don't need to track that
+    [SerializeField] private Sprite enemySprite;
+    [SerializeField] private Sprite itemSprite;
+
+    private SpriteRenderer sp;
+
+    void Awake() {
+        sp = GetComponent<SpriteRenderer>();
+    }
+
+    //given the current room type update the sprite
+    //set by the grammar first, so this works on updated sprite
+    //TOD0: this is too static!! rework to work kinda like the room containers stuff?
+    //currently need to add string for each new room type in code when a new type is added in editor
+    public void UpdateRoomSprite() {
+        if(roomTypeName == "Enemy") {
+            sp.sprite = enemySprite;
+        }
+        else if(roomTypeName == "Item") {
+            sp.sprite = itemSprite;
+        }
+    }
 }

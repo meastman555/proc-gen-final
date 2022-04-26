@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7642041095917375974}
   - component: {fileID: 7717213189427745445}
   m_Layer: 0
-  m_Name: URLD
+  m_Name: ULRD
   m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,9 +75,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -484821597
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 85718a4a120b41944be7e759c2a336bf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 861eabaa8f6d8b2468dad90dbe5f931e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -125,9 +125,9 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 0.36492622, y: 1.8617915}
-  - {x: 1.9139555, y: 1.8678366}
-  - {x: 1.9062325, y: 0.37309158}
+  - {x: 0.5004716, y: 1.4777464}
+  - {x: 1.4771984, y: 1.4762609}
+  - {x: 1.4770055, y: 0.5086369}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -148,9 +148,9 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 0.40511107, y: -1.882589}
-  - {x: 1.8974984, y: -1.8900894}
-  - {x: 1.9199994, y: -0.38251805}
+  - {x: 0.51806545, y: -1.4759529}
+  - {x: 1.4758016, y: -1.4759228}
+  - {x: 1.4757117, y: -0.49547255}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -171,9 +171,9 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -1.8674967, y: -0.39001846}
-  - {x: -1.8676803, y: -1.8900894}
-  - {x: -0.3826096, y: -1.8825891}
+  - {x: -1.4759213, y: -0.5180335}
+  - {x: -1.4761049, y: -1.4909837}
+  - {x: -0.51062465, y: -1.4910136}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -194,9 +194,9 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -1.8674967, y: 0.36751738}
-  - {x: -1.8601799, y: 1.8750887}
-  - {x: -0.38260984, y: 1.8975899}
+  - {x: -1.4759212, y: 0.48800224}
+  - {x: -1.4761348, y: 1.4759829}
+  - {x: -0.50309455, y: 1.4758931}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -213,9 +213,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f9849f6a42222418b0cc7c20eb421f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySprite: {fileID: 21300000, guid: c3e4569ea5ff1c94b8693e0ac1330eac, type: 3}
+  itemSprite: {fileID: 21300000, guid: 3140390d5573bb548a559dadfbc1669d, type: 3}
   numOpenings: 4
   upOpening: 1
   leftOpening: 1
   rightOpening: 1
   downOpening: 1
   roomTypeName: 
+  numEnemies: 0
+  numItems: 0

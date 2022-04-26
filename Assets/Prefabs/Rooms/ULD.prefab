@@ -74,9 +74,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -484821597
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8f82e2ef45e3d4a42bfeb6e4b70bc98b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 497864455accf6541aaa4dfb914dae5c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -124,11 +124,10 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 0.36492622, y: 1.8617915}
-  - {x: 1.9139555, y: 1.8678366}
-  - {x: 1.9047081, y: -0.004454474}
-  - {x: 1.8837312, y: -1.8920156}
-  - {x: 0.39590645, y: -1.8935269}
+  - {x: 0.5157263, y: 1.4847912}
+  - {x: 1.4615549, y: 1.483296}
+  - {x: 1.4673876, y: -1.4822959}
+  - {x: 0.51144993, y: -1.477315}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -149,9 +148,9 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.38861787, y: -1.9097271}
-  - {x: -1.8963046, y: -1.8898768}
-  - {x: -1.8894538, y: -0.40234604}
+  - {x: -0.47909796, y: -1.4799466}
+  - {x: -1.4665241, y: -1.4827167}
+  - {x: -1.4672133, y: -0.47020614}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -172,9 +171,9 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.388618, y: 1.8927263}
-  - {x: -1.8886756, y: 1.8754226}
-  - {x: -1.8894538, y: 0.37401178}
+  - {x: -0.50925815, y: 1.462946}
+  - {x: -1.4739752, y: 1.4607222}
+  - {x: -1.4747535, y: 0.5097319}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -191,9 +190,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f9849f6a42222418b0cc7c20eb421f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySprite: {fileID: 21300000, guid: 405ecf5f731ce87468f77dc6e1f9e1ee, type: 3}
+  itemSprite: {fileID: 21300000, guid: ff931c58868829249af2017843071585, type: 3}
   numOpenings: 3
   upOpening: 1
   leftOpening: 1
   rightOpening: 0
   downOpening: 1
   roomTypeName: 
+  numEnemies: 0
+  numItems: 0

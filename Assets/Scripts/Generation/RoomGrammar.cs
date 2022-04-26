@@ -11,9 +11,6 @@ public class RoomGrammar : MonoBehaviour
         [Range(0, 100)] public int easyChance;
         [Range(0, 100)] public int mediumChance;
         [Range(0, 100)] public int hardChance;
-
-        //TODO: remove once more art is in the game, this is just for debug
-        public Color color;
     }
     [SerializeField] private RoomType[] roomTypes;
 
@@ -112,10 +109,9 @@ public class RoomGrammar : MonoBehaviour
         string rtName = roomTypesGrammar[grammarIndex];
         RoomType rt = roomTypesDict[rtName];
 
-        room.GetComponent<RoomData>().roomTypeName = rtName;
-        //TODO: colors are debug so remove this once it's taken out later
-        room.GetComponent<SpriteRenderer>().color = rt.color;
-
+        RoomData rd = room.GetComponent<RoomData>();
+        rd.roomTypeName = rtName;
+        rd.UpdateRoomSprite();
     }
 
     //puts the room into the corresponding subcontainer based on type

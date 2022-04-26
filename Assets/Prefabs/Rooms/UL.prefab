@@ -73,9 +73,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -484821597
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f9cc87d07b90b3247936068a84b3c7bf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e75c7dcb54e74fa4a8ca126ada621725, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -123,12 +123,11 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 0.36492622, y: 1.8617915}
-  - {x: 1.9139555, y: 1.8678366}
-  - {x: 1.9029262, y: -0.04045133}
-  - {x: 1.8837312, y: -1.8920156}
-  - {x: -1.8821654, y: -1.9161943}
-  - {x: -1.8756326, y: -0.4009577}
+  - {x: 0.52306247, y: 1.470216}
+  - {x: 1.4847285, y: 1.4687307}
+  - {x: 1.4812297, y: -1.4787382}
+  - {x: -1.4898424, y: -1.4778494}
+  - {x: -1.49059, y: -0.5004986}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -149,9 +148,9 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -1.8744088, y: 0.36905527}
-  - {x: -1.8657184, y: 1.878326}
-  - {x: -0.37848103, y: 1.8838344}
+  - {x: -1.4677726, y: 0.50460064}
+  - {x: -1.4666126, y: 1.4792202}
+  - {x: -0.5064961, y: 1.4771981}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -168,9 +167,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f9849f6a42222418b0cc7c20eb421f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySprite: {fileID: 21300000, guid: 2d5fa0d6e7e0016458bdba03a9cb97a3, type: 3}
+  itemSprite: {fileID: 21300000, guid: 283a8411be2dbbf49a0086bd2073b8d3, type: 3}
   numOpenings: 2
   upOpening: 1
   leftOpening: 1
   rightOpening: 0
   downOpening: 0
   roomTypeName: 
+  numEnemies: 0
+  numItems: 0
