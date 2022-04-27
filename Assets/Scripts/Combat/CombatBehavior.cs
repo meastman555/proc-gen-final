@@ -65,9 +65,12 @@ public class CombatBehavior : MonoBehaviour
     }
 
     //called from double damage powerup, only on player -- enemies have no way of getting double damage
+    //multiple double damages do not stack
     public void GiveDoubleDamage(float duration) {
-        Debug.Log("Player double damage for: " + duration + " seconds!");
-        StartCoroutine(HandleDoubleDamage(duration));
+        if(!doubleDamageActive) {
+            Debug.Log("Player double damage for: " + duration + " seconds!");
+            StartCoroutine(HandleDoubleDamage(duration));
+        }
     }
 
     private IEnumerator HandleDoubleDamage(float duration) {
@@ -77,9 +80,12 @@ public class CombatBehavior : MonoBehaviour
     }
 
     //called from shield powerup, only on player -- enemies have no way of acquiring shield
+    //multiple shields do not stack
     public void GiveShield(float duration) {
-        Debug.Log("Player shield active for: " + duration + " seconds!");
-        StartCoroutine(HandleShield(duration));
+        if(!shieldActive) {
+            Debug.Log("Player shield active for: " + duration + " seconds!");
+            StartCoroutine(HandleShield(duration));
+        }
     }
 
     private IEnumerator HandleShield(float duration) {

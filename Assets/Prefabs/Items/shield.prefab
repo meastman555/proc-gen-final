@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5664283029535667427}
   - component: {fileID: 5664283029535667428}
   - component: {fileID: 5664283029535667429}
-  - component: {fileID: 5664283029535667430}
   - component: {fileID: 387215810936223976}
+  - component: {fileID: 5185714546953213548}
   m_Layer: 0
   m_Name: shield
   m_TagString: Power-Up
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5664283029535667431}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: -1277687515
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 893ba0fdfb810c9439fbed3ead73eae6, type: 3}
+  m_Sprite: {fileID: 9033317595158764154, guid: 51c76b6709d9edf4f947f6f5fd11facd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,22 +106,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &5664283029535667430
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5664283029535667431}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.024377823, y: 0}
-  serializedVersion: 2
-  m_Radius: 3.1117294
 --- !u!114 &387215810936223976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,3 +119,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 7
+--- !u!61 &5185714546953213548
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5664283029535667431}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.004112959, y: 0.0041130185}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.75, y: 1.1}
+    newSize: {x: 5.56, y: 5.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.1530721, y: 1.535976}
+  m_EdgeRadius: 0

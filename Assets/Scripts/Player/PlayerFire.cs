@@ -13,7 +13,7 @@ public class PlayerFire : MonoBehaviour
     private Quaternion staticCameraRotation;
 
     void Start() {
-        //0 can be hardcoded since camera is first child in the prefab
+        //0 can be hardcoded since camera will alway be first child in the prefab
         childCamera = transform.GetChild(0);
         staticCameraRotation = childCamera.transform.rotation;
     }
@@ -24,7 +24,8 @@ public class PlayerFire : MonoBehaviour
     public void AimAtMouse() {
         Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
         Vector3 dir = Input.mousePosition - pos;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        //-90.0f is needed to have correct direction (not too sure why, but normally it points right when mouse is above)
+        float angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) - 90.0f;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         //we don't want the camera to rotate with the player, but it's a child, so just need to restore it's saved rotation (which is static) each time
         childCamera.transform.rotation = staticCameraRotation;
@@ -33,7 +34,7 @@ public class PlayerFire : MonoBehaviour
     public void FireShot() {
         //TODO: rotation is 90 degrees off, but I don't think it's as simple as adding to the z in quarternion?
         GameObject instantiatedBullet = Instantiate(bulletPrefab, bulletOrigin.position, transform.rotation);
-        instantiatedBullet.GetComponent<Rigidbody2D>().velocity = transform.right * bulletSpeed;
+        instantiatedBullet.GetComponent<Rigidbody2D>().velocity = transform.up * bulletSpeed;
         //gives the bullet damage
         int bulletDamage = GetComponent<CombatBehavior>().CalculateDamage();
         instantiatedBullet.GetComponent<Bullet>().SetDamage(bulletDamage);
