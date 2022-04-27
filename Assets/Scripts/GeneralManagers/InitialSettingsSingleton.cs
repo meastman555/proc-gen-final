@@ -49,4 +49,8 @@ public class InitialSettingsSingleton : MonoBehaviour
 
     public void SetMinRooms(TMP_InputField input) { minRooms = Int32.Parse(input.text); }
     public int GetMinRooms() { return minRooms; } 
+
+    //special -- sets the random seed if the user wants to use a custom one
+    //by default it's random (but shown to user in case they want to save it and get this generation back later)
+    public void SetRandomSeed(TMP_InputField input) { UnityEngine.Random.InitState(Int32.Parse(input.text)); Debug.Log("Input: " + Int32.Parse(input.text)); }
 }

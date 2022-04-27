@@ -38,6 +38,9 @@ public class RoomGenerator : MonoBehaviour
         height = InitialSettingsSingleton.Instance.GetHeight();
         minRoomCount = InitialSettingsSingleton.Instance.GetMinRooms();
 
+        //TODO: this is depreceated but I can't find a good way to just display the initial starting seed so for now it stays
+        //add the random seed to UI!
+        Debug.Log("Random Seed: " + Random.seed);
         Debug.Log("Width: " + width);
         Debug.Log("Height: " + height);
         Debug.Log("Min Rooms: " + minRoomCount);
