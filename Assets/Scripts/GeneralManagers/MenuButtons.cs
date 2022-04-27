@@ -19,6 +19,14 @@ public class MenuButtons : MonoBehaviour
         ReturnToMainMenu();
     }
 
+    //returns to main menu by disabling all other menus
+    public void ReturnToMainMenu() {
+        mainSubMenu.SetActive(true);
+        optionsSubMenu.SetActive(false);
+        creditsSubMenu.SetActive(false);
+        backButton.SetActive(false);
+    }
+
     //TODO: put on a delay/some kind of transition?
     public void StartGame() {
         SceneManager.LoadScene(gameSceneName);
@@ -41,13 +49,5 @@ public class MenuButtons : MonoBehaviour
             diff = InitialSettingsSingleton.Difficulty.Hard;
         }
         InitialSettingsSingleton.Instance.SetDifficulty(diff);
-    }
-
-    //returns to main menu by disabling all other menus
-    public void ReturnToMainMenu() {
-        mainSubMenu.SetActive(true);
-        optionsSubMenu.SetActive(false);
-        creditsSubMenu.SetActive(false);
-        backButton.SetActive(false);
     }
 }

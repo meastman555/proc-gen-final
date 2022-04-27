@@ -12,7 +12,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
-        StartCoroutine(RandomMovement());
+        //StartCoroutine(RandomMovement());
     }
 
     //picks a random direction and moves in it

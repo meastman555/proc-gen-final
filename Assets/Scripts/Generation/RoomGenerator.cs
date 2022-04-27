@@ -6,18 +6,21 @@ public class RoomGenerator : MonoBehaviour
 {
     [SerializeField] private Transform roomContainer;
     //X max
-    [SerializeField] private int width;
+    //[SerializeField] private int width;
     //Y max
-    [SerializeField] private int height;    
+    //[SerializeField] private int height;    
     //middle of grid is not (0,0), it's (width/2, height/2)
-    [SerializeField] private int startX;
-    [SerializeField] private int startY;
-    [SerializeField] private int minRoomCount;
+    // [SerializeField] private int startX;
+    // [SerializeField] private int startY;
+    //[SerializeField] private int minRoomCount;
 
+    private int width;
+    private int height;
+    private int minRoomCount;
     private int adjustedWidth;
     private int adjustedHeight;
-    private int adjustedStartX;
-    private int adjustedStartY;
+    private int startX;
+    private int startY;
 
     private WangTiles wang;
     private RoomGrammar grammar;
@@ -31,15 +34,23 @@ public class RoomGenerator : MonoBehaviour
     private GameObject[,] rooms;
  
     void Start() {
+        width = InitialSettingsSingleton.Instance.GetWidth();
+        height = InitialSettingsSingleton.Instance.GetHeight();
+        minRoomCount = InitialSettingsSingleton.Instance.GetMinRooms();
+
+        Debug.Log("Width: " + width);
+        Debug.Log("Height: " + height);
+        Debug.Log("Min Rooms: " + minRoomCount);
+
+        adjustedWidth = width + 2;
+        adjustedHeight = height + 2;
+        startX = (width / 2) + 1;
+        startY = (height / 2) + 1;
+
         wang = GetComponent<WangTiles>();
         grammar = GetComponent<RoomGrammar>();
         enemySpawner = GetComponent<EnemySpawner>();
         itemSpawner = GetComponent<ItemSpawner>();
-
-        adjustedWidth = width + 2;
-        adjustedHeight = height + 2;
-        adjustedStartX = startX + 1;
-        adjustedStartY = startY + 1;
 
         //this is the all important call that generates the entire level once the scene is loaded
         ResetAll();
@@ -64,7 +75,7 @@ public class RoomGenerator : MonoBehaviour
     //generates just the blank tiles for structure -- uses depth-first recursive backtracking Wang Tile implementation with both first-fit and best-fit tile algorithms
     //rooms is passed by reference to wang tiles, and it's where the final layout ends up internally, in the editor they're subdivided under roomContainer object
     private void GenerateBaseLayout() {
-        wang.GenerateRooms(roomContainer, rooms, adjustedStartX, adjustedStartY);
+        wang.GenerateRooms(roomContainer, rooms, startX, startY);
         //if wang doesn't generate enough rooms, restart and repeat until it does
         if(roomContainer.childCount < minRoomCount) {
             ResetAll();

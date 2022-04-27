@@ -8,7 +8,7 @@ using UnityEngine;
 public class WangTiles : MonoBehaviour
 {
     [Header("Generation Parameters")]
-    [SerializeField] private int maxRecursionDepth;
+    // [SerializeField] private int maxRecursionDepth;
     [SerializeField] private int maxFitTries;
     [SerializeField] private float xOffset;
     [SerializeField] private float yOffset;
@@ -34,6 +34,7 @@ public class WangTiles : MonoBehaviour
         }
     }
 
+    private int maxRecursionDepth;
     private int layoutWidth;
     private int layoutHeight;
     private Direction upDir;
@@ -53,6 +54,8 @@ public class WangTiles : MonoBehaviour
     //kicks off the entire generation of a blank layout -- this is called in RoomGenerator.cs
     //the only public function
     public void GenerateRooms(Transform roomContainer, GameObject[,] rooms, int startX, int startY) {
+        maxRecursionDepth = InitialSettingsSingleton.Instance.GetMaxRecursionDepth();
+        Debug.Log("Max Recursion Depth: " + maxRecursionDepth);
         layoutWidth = rooms.GetLength(0);
         layoutHeight = rooms.GetLength(1);
         GameObject startRoom = PlaceStartRoom(roomContainer, rooms, startX, startY);
