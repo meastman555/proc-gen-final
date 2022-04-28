@@ -262,6 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 15
+  invulnerabilityPeriod: 3
 --- !u!114 &6893470957322811516
 MonoBehaviour:
   m_ObjectHideFlags: 0

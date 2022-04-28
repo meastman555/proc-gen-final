@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: when I started writing/using this class, I thought it would be a really handy way to abstract out and reuse logic for both the player and enemy
+//however, after adding more to it (and after it's being referenced a lot in other scripts) I realize it's not that smart and kinda adds a bit of confusion
+//if I had more time, and/or could do it over, I would make two separate classes for player and enemies (even if they reuse some logic)
 public class CombatBehavior : MonoBehaviour
 {
     [SerializeField] private int baseHealth;
@@ -15,6 +18,17 @@ public class CombatBehavior : MonoBehaviour
 
     void Awake() {
         health = baseHealth + Random.Range(0, maxExtraHealth + 1);
+
+        //sets the player UI correctly
+        if(gameObject.tag == "Player") {
+            UIManager.Instance.SetUIMaxHealth(health);
+            UIManager.Instance.UpdatePlayerHealthUI(health);
+        }
+        //TODO: initialize specific enemy UI healthbars?
+        else {
+
+        }
+
         doubleDamageActive = false;
         shieldActive = false;
     }
@@ -40,7 +54,15 @@ public class CombatBehavior : MonoBehaviour
         health -= damageDealt;
         //cap at 0
         health = Mathf.Clamp(health, 0, 100);
-        //TODO: UI healthbar stuff
+        Debug.Log("Health is now: " + health);
+        //reflect change on player healthbar
+        if(gameObject.tag == "Player") {
+            UIManager.Instance.UpdatePlayerHealthUI(health);
+        }
+        //TODO: update specific enemy healthbar?
+        else {
+
+        }
 
         //death! do stuff depending on if this is enemy or player
         if(health <= 0) {
@@ -62,6 +84,7 @@ public class CombatBehavior : MonoBehaviour
         health = Mathf.Clamp(health, 0, 100);
         Debug.Log("Health is now: " + health);
         //TODO: UI healthbar stuff
+        UIManager.Instance.UpdatePlayerHealthUI(health);
     }
 
     //called from double damage powerup, only on player -- enemies have no way of getting double damage
@@ -75,8 +98,10 @@ public class CombatBehavior : MonoBehaviour
 
     private IEnumerator HandleDoubleDamage(float duration) {
         doubleDamageActive = true;
+        UIManager.Instance.ToggleDamageIcon(true);
         yield return new WaitForSeconds(duration);
         doubleDamageActive = false;
+        UIManager.Instance.ToggleDamageIcon(false);
     }
 
     //called from shield powerup, only on player -- enemies have no way of acquiring shield
@@ -90,7 +115,9 @@ public class CombatBehavior : MonoBehaviour
 
     private IEnumerator HandleShield(float duration) {
         shieldActive = true;
+        UIManager.Instance.ToggleShieldIcon(true);
         yield return new WaitForSeconds(duration);
         shieldActive = false;
+        UIManager.Instance.ToggleShieldIcon(false);
     }
 }

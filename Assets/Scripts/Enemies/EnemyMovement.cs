@@ -4,37 +4,38 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    //[SerializeField] private GameObject player;
+    [SerializeField] private float viewDistance;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float moveTime;
-    [SerializeField] private float moveDelay;
 
-    private Rigidbody2D rb;
+    private GameObject player;
+
+    //once the player gets close enough to enemy, it won't stop chasing the player even if they gain distance
+    private bool chasingPlayer;
 
     void Awake() {
-        rb = GetComponent<Rigidbody2D>();
-        //StartCoroutine(RandomMovement());
+        //this is not serialized because enemies are created at runtime, and need the runtime instance of the player (not the prefab)
+        player = GameObject.FindGameObjectWithTag("Player");
+        chasingPlayer = false;
     }
 
-    //picks a random direction and moves in it
-    //speed, time of walk, and time between walk all specified in editor
-    private IEnumerator RandomMovement() {
-        //this is fine bc it's a coroutine and when the enemy is killed (object destroyed) this will of course stop running
-        while(true) {
-            float randHorizontalDir = Random.Range(-1.0f, 1.0f);
-            float randVerticalDir = Random.Range(-1.0f, 1.0f);
-
-            Vector2 moveDir = (new Vector2(randHorizontalDir, randVerticalDir).normalized) * moveSpeed;
-            rb.velocity = moveDir;
-            yield return new WaitForSeconds(moveTime);
-            rb.velocity = Vector2.zero;
-            yield return new WaitForSeconds(moveDelay);
+    void Update() {
+        if(!chasingPlayer) {
+            CheckForPlayerRange();
+        }
+        else {
+            MoveTowardPlayer();
         }
     }
 
-    //to help not get stuck on walls
-    private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.tag == "Room") {
-            rb.velocity = -other.relativeVelocity;
-        }    
+    //sets the boolean if the player is in range (so enemy should start moving)
+    private void CheckForPlayerRange() {
+        float distToPlayer = Vector3.Distance(transform.position, player.transform.position);
+        chasingPlayer = (distToPlayer <= viewDistance);
+    }
+
+    //TODO: since this is tied to transform.position, enemies completely ignore collisions and can phase through walls
+    private void MoveTowardPlayer() {
+        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
     }
 }
