@@ -36,7 +36,7 @@ public class PlayerFire : MonoBehaviour
         GameObject instantiatedBullet = Instantiate(bulletPrefab, bulletOrigin.position, transform.rotation);
         instantiatedBullet.GetComponent<Rigidbody2D>().velocity = transform.up * bulletSpeed;
         //gives the bullet damage
-        int bulletDamage = GetComponent<CombatBehavior>().CalculateDamage();
+        int bulletDamage = GetComponent<PlayerCombat>().CalculateDamage();
         instantiatedBullet.GetComponent<Bullet>().SetDamage(bulletDamage);
     }
 }

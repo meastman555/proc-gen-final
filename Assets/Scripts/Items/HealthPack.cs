@@ -11,7 +11,7 @@ public class HealthPack : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.tag == "Player") {
             int restoredHealth = baseHealthRegen + Random.Range(0, maxBonusHealthRegen + 1);
-            other.gameObject.GetComponent<CombatBehavior>().RestoreHealth(restoredHealth);
+            other.gameObject.GetComponent<PlayerCombat>().RestoreHealth(restoredHealth);
             Destroy(this.gameObject);
         }
     }

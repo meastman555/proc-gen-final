@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {    
         if(other.gameObject.tag == "Enemy") {
             //send to enemy to handle effects of raw bullet damage
-            other.gameObject.GetComponent<CombatBehavior>().ReceiveDamage(damage);
+            other.gameObject.GetComponent<EnemyCombat>().ReceiveDamage(damage);
         }
         Destroy(this.gameObject);
     }

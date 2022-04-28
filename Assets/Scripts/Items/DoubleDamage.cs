@@ -9,7 +9,7 @@ public class DoubleDamage : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.tag == "Player") {
-            other.gameObject.GetComponent<CombatBehavior>().GiveDoubleDamage(duration);
+            other.gameObject.GetComponent<PlayerCombat>().GiveDoubleDamage(duration);
             Destroy(this.gameObject);
         }
     }

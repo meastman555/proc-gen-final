@@ -10,7 +10,7 @@ public class Shield : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.tag == "Player") {
-            other.gameObject.GetComponent<CombatBehavior>().GiveShield(duration);
+            other.gameObject.GetComponent<PlayerCombat>().GiveShield(duration);
             Destroy(this.gameObject);
         }
     }

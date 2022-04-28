@@ -53,8 +53,8 @@ public class PlayerMovement : MonoBehaviour
     //but player cannot be spam attacked -- there is a window of invulnerability after receiving damage (and to keep the collisions from racking up really fast)
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.tag == "Enemy" && canTakeDamage) {
-            int damage = other.gameObject.GetComponent<CombatBehavior>().CalculateDamage();
-            GetComponent<CombatBehavior>().ReceiveDamage(damage);
+            int damage = other.gameObject.GetComponent<EnemyCombat>().CalculateDamage();
+            GetComponent<PlayerCombat>().ReceiveDamage(damage);
             StartCoroutine(PostDamageInvulnerability());
         }
     }

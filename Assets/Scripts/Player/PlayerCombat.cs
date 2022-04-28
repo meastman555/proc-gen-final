@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO: when I started writing/using this class, I thought it would be a really handy way to abstract out and reuse logic for both the player and enemy
-//however, after adding more to it (and after it's being referenced a lot in other scripts) I realize it's not that smart and kinda adds a bit of confusion
-//if I had more time, and/or could do it over, I would make two separate classes for player and enemies (even if they reuse some logic)
-public class CombatBehavior : MonoBehaviour
+public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] private int baseHealth;
     [SerializeField] private int maxExtraHealth;
@@ -16,19 +13,12 @@ public class CombatBehavior : MonoBehaviour
     private bool doubleDamageActive;
     private bool shieldActive;
 
-    void Awake() {
+    // Start is called before the first frame update
+    void Start()
+    {
         health = baseHealth + Random.Range(0, maxExtraHealth + 1);
-
-        //sets the player UI correctly
-        if(gameObject.tag == "Player") {
-            UIManager.Instance.SetUIMaxHealth(health);
-            UIManager.Instance.UpdatePlayerHealthUI(health);
-        }
-        //TODO: initialize specific enemy UI healthbars?
-        else {
-
-        }
-
+        UIManager.Instance.SetUIMaxHealth(health);
+        UIManager.Instance.UpdatePlayerHealthUI(health);
         doubleDamageActive = false;
         shieldActive = false;
     }
@@ -40,9 +30,8 @@ public class CombatBehavior : MonoBehaviour
         return damage;
     }
 
-    //entity takes damage, account for death if it happens
     public void ReceiveDamage(int damageDealt) {
-        //account for player shield (will always be false for enemy damage since they can never get shield)
+        //account for player shield
         if(shieldActive) {
             Debug.Log("Shield prevented damage!");
             return;
@@ -55,28 +44,15 @@ public class CombatBehavior : MonoBehaviour
         //cap at 0
         health = Mathf.Clamp(health, 0, 100);
         Debug.Log("Health is now: " + health);
-        //reflect change on player healthbar
-        if(gameObject.tag == "Player") {
-            UIManager.Instance.UpdatePlayerHealthUI(health);
-        }
-        //TODO: update specific enemy healthbar?
-        else {
-
-        }
-
+        UIManager.Instance.UpdatePlayerHealthUI(health);
         //death! do stuff depending on if this is enemy or player
         if(health <= 0) {
             Destroy(gameObject);
-            if(gameObject.tag == "Enemy") {
-                TimerAndWinLoseState.Instance.UpdateEnemiesTextOnKill();
-            }
-            else {
-                Debug.Log("Game Over! You died.");
-            }
+            Debug.Log("Game Over! You died.");
         }
     }
 
-    //called from health pack powerup, only on player -- enemies have no way of restoring health
+     //called from health pack powerup
     public void RestoreHealth(int healthHealed) {
         Debug.Log("Healed for: " + healthHealed + " points!");
         health += healthHealed;
@@ -87,7 +63,7 @@ public class CombatBehavior : MonoBehaviour
         UIManager.Instance.UpdatePlayerHealthUI(health);
     }
 
-    //called from double damage powerup, only on player -- enemies have no way of getting double damage
+    //called from double damage powerup
     //multiple double damages do not stack
     public void GiveDoubleDamage(float duration) {
         if(!doubleDamageActive) {
@@ -104,7 +80,7 @@ public class CombatBehavior : MonoBehaviour
         UIManager.Instance.ToggleDamageIcon(false);
     }
 
-    //called from shield powerup, only on player -- enemies have no way of acquiring shield
+    //called from shield powerup
     //multiple shields do not stack
     public void GiveShield(float duration) {
         if(!shieldActive) {
