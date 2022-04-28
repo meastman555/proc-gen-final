@@ -14,8 +14,7 @@ public class PlayerCombat : MonoBehaviour
     private bool shieldActive;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         health = baseHealth + Random.Range(0, maxExtraHealth + 1);
         UIManager.Instance.SetUIMaxHealth(health);
         UIManager.Instance.UpdatePlayerHealthUI(health);

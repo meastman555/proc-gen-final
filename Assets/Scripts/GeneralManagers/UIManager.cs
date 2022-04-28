@@ -33,6 +33,7 @@ public class UIManager : MonoBehaviour
     public void ToggleShieldIcon(bool toggle) { shieldIcon.SetActive(toggle); }
     public void ToggleDamageIcon(bool toggle) { damageIcon.SetActive(toggle); }
 
+    //helper functions for updating healthbar ui from other scripts
     public void SetUIMaxHealth(int maxHealth) { playerHealthBar.GetComponent<Slider>().maxValue = maxHealth; }
     public void UpdatePlayerHealthUI(int health) { playerHealthBar.GetComponent<Slider>().value = health; }
 }

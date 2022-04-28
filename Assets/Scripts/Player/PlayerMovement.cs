@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//public functions are called from UserInput.cs
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;

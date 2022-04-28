@@ -12,8 +12,7 @@ public class EnemyCombat : MonoBehaviour
     private int health;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         health = baseHealth + Random.Range(0, maxExtraHealth + 1);
     }
 
