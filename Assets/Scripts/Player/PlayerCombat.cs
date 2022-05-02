@@ -32,32 +32,27 @@ public class PlayerCombat : MonoBehaviour
     public void ReceiveDamage(int damageDealt) {
         //account for player shield
         if(shieldActive) {
-            Debug.Log("Shield prevented damage!");
             return;
         }
 
         //no else, because the early return acts as a guard clause
         //general damage taking case for both player and enemy
-        Debug.Log(gameObject.name + " got hit for " + damageDealt + " damage!");
         health -= damageDealt;
         //cap at 0
         health = Mathf.Clamp(health, 0, 100);
-        Debug.Log("Health is now: " + health);
         UIManager.Instance.UpdatePlayerHealthUI(health);
         //death! do stuff depending on if this is enemy or player
         if(health <= 0) {
             Destroy(gameObject);
-            Debug.Log("Game Over! You died.");
+            TimerAndWinLoseState.Instance.Lose();
         }
     }
 
      //called from health pack powerup
     public void RestoreHealth(int healthHealed) {
-        Debug.Log("Healed for: " + healthHealed + " points!");
         health += healthHealed;
         //cap at 100
         health = Mathf.Clamp(health, 0, 100);
-        Debug.Log("Health is now: " + health);
         //TODO: UI healthbar stuff
         UIManager.Instance.UpdatePlayerHealthUI(health);
     }
@@ -66,7 +61,6 @@ public class PlayerCombat : MonoBehaviour
     //multiple double damages do not stack
     public void GiveDoubleDamage(float duration) {
         if(!doubleDamageActive) {
-            Debug.Log("Player double damage for: " + duration + " seconds!");
             StartCoroutine(HandleDoubleDamage(duration));
         }
     }
@@ -83,7 +77,6 @@ public class PlayerCombat : MonoBehaviour
     //multiple shields do not stack
     public void GiveShield(float duration) {
         if(!shieldActive) {
-            Debug.Log("Player shield active for: " + duration + " seconds!");
             StartCoroutine(HandleShield(duration));
         }
     }

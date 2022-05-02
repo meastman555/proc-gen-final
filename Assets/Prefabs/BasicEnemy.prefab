@@ -145,8 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c844b87c05ffcb74db950a24ff04e227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewDistance: 9
-  moveSpeed: 6
+  viewDistance: 12
+  moveSpeed: 9
 --- !u!114 &1864502152655972876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,5 +161,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHealth: 30
   maxExtraHealth: 7
-  baseDamage: 6
-  maxExtraDamage: 4
+  baseDamage: 12
+  maxExtraDamage: 8

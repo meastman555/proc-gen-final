@@ -22,11 +22,9 @@ public class EnemyCombat : MonoBehaviour
     }
 
     public void ReceiveDamage(int damageDealt) {
-        Debug.Log("Enemy got hit for " + damageDealt + " damage!");
         health -= damageDealt;
         //cap at 0
         health = Mathf.Clamp(health, 0, 100);
-        Debug.Log("Health is now: " + health);
         //TODO: enemy healthbar UI?
 
         //death! do stuff depending on if this is enemy or player

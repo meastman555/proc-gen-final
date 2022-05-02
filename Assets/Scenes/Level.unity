@@ -348,11 +348,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1392210227}
-  easySecondsPerEnemy: 15
-  mediumSecondsPerEnemy: 9
+  easySecondsPerEnemy: 10
+  mediumSecondsPerEnemy: 7
   hardSecondsPerEnemy: 5
+  scorePerEnemy: 23
+  easyScoreMultiplier: 1
+  mediumScoreMultiplier: 1.3
+  hardScoreMultiplier: 1.8
   enemiesRemainingText: {fileID: 823779992}
-  roomContainer: {fileID: 0}
+  roomContainer: {fileID: 2015677086}
+  winSceneName: Win
+  loseSceneName: Lose
 --- !u!4 &573267194
 Transform:
   m_ObjectHideFlags: 0
@@ -361,7 +367,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573267192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 328.40253, y: 211.80423, z: -550.7828}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -603,7 +609,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 19.700016, y: -24.999989}
+  m_AnchoredPosition: {x: 84, y: -24.999989}
   m_SizeDelta: {x: 450, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &823779992
@@ -626,7 +632,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Enemies Alive: 0'
+  m_text: 'Parasites Alive: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -904,7 +910,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 19.700012, y: 25}
+  m_AnchoredPosition: {x: 83, y: 25}
   m_SizeDelta: {x: 450, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1392210227
@@ -1040,7 +1046,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -423.40137, y: 287.42474}
+  m_AnchoredPosition: {x: -514, y: 292}
   m_SizeDelta: {x: -823.7461, y: -555.9851}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1463223086
@@ -1483,6 +1489,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 177214882064903597, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
+      propertyPath: enemyTypes.Array.data[0].maxPerRoom
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 177214882064903597, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
+      propertyPath: enemyTypes.Array.data[0].minPerRoom
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7579003841289470628, guid: 3bca90332fb8454499b8523349f9e516, type: 3}
       propertyPath: m_Name
       value: GenerationManager

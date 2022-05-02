@@ -33,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
     //multiple speed boosts do not stack
     public void GiveSpeedBoost(float speedMultiplier, float duration) {
         if(!speedBoostActive) {
-            Debug.Log("Giving player " + speedMultiplier + " speed boost multiplier for " + duration + " seconds!");
             StartCoroutine(HandleSpeedBoost(speedMultiplier, duration));          
         }
     }

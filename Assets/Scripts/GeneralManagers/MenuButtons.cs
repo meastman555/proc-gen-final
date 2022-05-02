@@ -11,11 +11,8 @@ public class MenuButtons : MonoBehaviour
     [SerializeField] private GameObject howToPlaySubMenu;
     [SerializeField] private GameObject creditsSubMenu;
     [SerializeField] private GameObject backButton;
-    [SerializeField] private string gameSceneName;
     [SerializeField] private TextMeshProUGUI difficultyText;
 
-    //TODO: look into how to do like an options submenu? so that hitting options would go to another UI screen with options/credits
-    //or put them on main generation screen so user knows that they're worth looking in to
     void Start() {
         ReturnToMainMenu();
     }
@@ -30,7 +27,7 @@ public class MenuButtons : MonoBehaviour
     }
 
     //TODO: put on a delay/some kind of transition?
-    public void StartGame() {
+    public void StartGame(string gameSceneName) {
         SceneManager.LoadScene(gameSceneName);
     }
 
@@ -51,5 +48,9 @@ public class MenuButtons : MonoBehaviour
             diff = InitialSettingsSingleton.Difficulty.Hard;
         }
         InitialSettingsSingleton.Instance.SetDifficulty(diff);
+    }
+
+    public void LoadMainMenuScene(string menuSceneName) {
+        SceneManager.LoadScene(menuSceneName);
     }
 }

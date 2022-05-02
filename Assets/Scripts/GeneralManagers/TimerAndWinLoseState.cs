@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 //prefabbing this causes the enemy calculation stuff to not work, so don't prefab! not sure why that happens
 public class TimerAndWinLoseState : MonoBehaviour
 {
-
     private static TimerAndWinLoseState _instance;
     public static TimerAndWinLoseState Instance {
         get { return _instance; }
@@ -18,15 +18,21 @@ public class TimerAndWinLoseState : MonoBehaviour
     [SerializeField] private int mediumSecondsPerEnemy;
     [SerializeField] private int hardSecondsPerEnemy;
 
-    [SerializeField] private TextMeshProUGUI enemiesRemainingText;
+    [Header("Scoring")]
+    [SerializeField] private int scorePerEnemy;
+    [SerializeField] private float easyScoreMultiplier;
+    [SerializeField] private float mediumScoreMultiplier;
+    [SerializeField] private float hardScoreMultiplier;
 
+    [SerializeField] private TextMeshProUGUI enemiesRemainingText;
     [SerializeField] private GameObject roomContainer;
+    [SerializeField] private string winSceneName;
+    [SerializeField] private string loseSceneName;
 
     private int totalTime;
     private int totalEnemies;
     private int score;
 
-    //not technically a needed singleton pattern, but makes sense to treat it like one
     void Awake() {
         if(_instance != null && _instance != this) {
             Destroy(gameObject);
@@ -41,6 +47,7 @@ public class TimerAndWinLoseState : MonoBehaviour
     void Start()
     {
         score = 0;
+        PlayerPrefs.DeleteKey("score");
         InitializeEnemiesText();
         StartTimer();
     }
@@ -56,10 +63,12 @@ public class TimerAndWinLoseState : MonoBehaviour
     public void UpdateEnemiesTextOnKill() {
         totalEnemies--;
         enemiesRemainingText.text = "Enemies Remaining: " + totalEnemies;
+        score += scorePerEnemy;
         
-        //TODO: actual win stuff
         if(totalEnemies == 0) {
-            Debug.Log("Game Over! You win!");
+            CalculateFinalScore();
+            PlayerPrefs.SetInt("score", score);
+            SceneManager.LoadScene(winSceneName);
         }
     }
 
@@ -85,11 +94,11 @@ public class TimerAndWinLoseState : MonoBehaviour
                 break;
             }
         }
-
         StartCoroutine(TimerTick());
     }
 
     private IEnumerator TimerTick() {
+        yield return new WaitForSeconds(1.0f);
         while(totalTime > 0) {
             int minutes = totalTime / 60;
             int seconds = totalTime % 60;
@@ -97,9 +106,37 @@ public class TimerAndWinLoseState : MonoBehaviour
             yield return new WaitForSeconds(1);
             totalTime--;
         }
-        
-        //TODO: actual lose stuff
         timerText.text = "Time Remaining: 0:00";
-        Debug.Log("Game Over! You lose");
+        Lose();
+    }
+
+    //score is multiplied based on difficulty
+    private void CalculateFinalScore() {
+        score += totalTime;
+        InitialSettingsSingleton.Difficulty diff = InitialSettingsSingleton.Instance.GetDifficulty();
+        switch(diff) {
+            case InitialSettingsSingleton.Difficulty.Easy: {
+                score = Mathf.RoundToInt(score * easyScoreMultiplier);
+                break;
+            }
+            case InitialSettingsSingleton.Difficulty.Medium: {
+                score = Mathf.RoundToInt(score * mediumScoreMultiplier);
+                break;
+            }
+            case InitialSettingsSingleton.Difficulty.Hard: {
+                score = Mathf.RoundToInt(score * hardScoreMultiplier);
+                break;
+            }
+            //if for some reason invalid difficulty, makes medium
+            default: {
+                score = Mathf.RoundToInt(score * mediumScoreMultiplier);
+                break;
+            }
+        }
+    }
+
+    //hacky, but needed (for when player dies)
+    public void Lose() {
+        SceneManager.LoadScene(loseSceneName);
     }
 }

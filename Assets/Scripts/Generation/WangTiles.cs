@@ -55,7 +55,6 @@ public class WangTiles : MonoBehaviour
     //the only public function
     public void GenerateRooms(Transform roomContainer, GameObject[,] rooms, int startX, int startY) {
         maxRecursionDepth = InitialSettingsSingleton.Instance.GetMaxRecursionDepth();
-        Debug.Log("Max Recursion Depth: " + maxRecursionDepth);
         layoutWidth = rooms.GetLength(0);
         layoutHeight = rooms.GetLength(1);
         GameObject startRoom = PlaceStartRoom(roomContainer, rooms, startX, startY);
