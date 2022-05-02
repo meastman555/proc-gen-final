@@ -14,9 +14,9 @@ public class TimerAndWinLoseState : MonoBehaviour
 
     [Header("Timer")]
     [SerializeField] private TextMeshProUGUI timerText;
-    [SerializeField] private int easyTimerSeconds;
-    [SerializeField] private int mediumTimerSeconds;
-    [SerializeField] private int hardTimerSeconds;
+    [SerializeField] private int easySecondsPerEnemy;
+    [SerializeField] private int mediumSecondsPerEnemy;
+    [SerializeField] private int hardSecondsPerEnemy;
 
     [SerializeField] private TextMeshProUGUI enemiesRemainingText;
 
@@ -24,6 +24,7 @@ public class TimerAndWinLoseState : MonoBehaviour
 
     private int totalTime;
     private int totalEnemies;
+    private int score;
 
     //not technically a needed singleton pattern, but makes sense to treat it like one
     void Awake() {
@@ -39,6 +40,7 @@ public class TimerAndWinLoseState : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        score = 0;
         InitializeEnemiesText();
         StartTimer();
     }
@@ -66,20 +68,20 @@ public class TimerAndWinLoseState : MonoBehaviour
         InitialSettingsSingleton.Difficulty diff = InitialSettingsSingleton.Instance.GetDifficulty();
         switch(diff) {
             case InitialSettingsSingleton.Difficulty.Easy: {
-                totalTime = easyTimerSeconds;
+                totalTime = totalEnemies * easySecondsPerEnemy;
                 break;
             }
             case InitialSettingsSingleton.Difficulty.Medium: {
-                totalTime = mediumTimerSeconds;
+                totalTime = totalEnemies * mediumSecondsPerEnemy;
                 break;
             }
             case InitialSettingsSingleton.Difficulty.Hard: {
-                totalTime = hardTimerSeconds;
+                totalTime = totalEnemies * hardSecondsPerEnemy;
                 break;
             }
             //if for some reason invalid difficulty, makes medium
             default: {
-                totalTime = mediumTimerSeconds;
+                totalTime = totalEnemies * mediumSecondsPerEnemy;
                 break;
             }
         }

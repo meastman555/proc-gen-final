@@ -8,6 +8,7 @@ public class MenuButtons : MonoBehaviour
 {
     [SerializeField] private GameObject mainSubMenu;
     [SerializeField] private GameObject optionsSubMenu;
+    [SerializeField] private GameObject howToPlaySubMenu;
     [SerializeField] private GameObject creditsSubMenu;
     [SerializeField] private GameObject backButton;
     [SerializeField] private string gameSceneName;
@@ -24,6 +25,7 @@ public class MenuButtons : MonoBehaviour
         mainSubMenu.SetActive(true);
         optionsSubMenu.SetActive(false);
         creditsSubMenu.SetActive(false);
+        howToPlaySubMenu.SetActive(false);
         backButton.SetActive(false);
     }
 
