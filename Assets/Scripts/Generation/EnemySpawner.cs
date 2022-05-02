@@ -17,18 +17,22 @@ public class EnemySpawner : MonoBehaviour
 
     private SpawnGrammar sg;
 
+    private int numEnemies;
+
     //Awake vs Start so that the spawner can be initialized before RoomGeneration kicks off the process
     void Awake() {
         sg = GetComponent<SpawnGrammar>();
+        numEnemies = 0;
     }
 
     //kick starts enemy generation process, called from RoomGenerator.cs
     //only public function
-    public void GenerateAllEnemies(GameObject enemyRoomContainer) {
+    public int GenerateAllEnemies(GameObject enemyRoomContainer) {
         //if no enemy room type is defined in grammar, this will not run, so enemies won't be spawned (and game won't crash)
         if(enemyRoomContainer != null) {
             SpawnAllEnemies(enemyRoomContainer.transform);
         }
+        return numEnemies;
     }
 
     private void SpawnAllEnemies(Transform enemyRoomContainer) {
@@ -44,6 +48,7 @@ public class EnemySpawner : MonoBehaviour
 
         //determine how many to spawn based on type
         int spawnNum = Random.Range(es.minPerRoom, es.maxPerRoom);
+        numEnemies += spawnNum;
         for(int i = 0; i < spawnNum; i++) {
             GameObject instantiatedEnemy = SpawnEnemyOfType(room.position, es);
             instantiatedEnemy.transform.SetParent(room);

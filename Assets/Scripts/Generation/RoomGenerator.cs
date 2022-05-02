@@ -27,6 +27,9 @@ public class RoomGenerator : MonoBehaviour
     private EnemySpawner enemySpawner;
     private ItemSpawner itemSpawner;
 
+    private int numEnemies;
+    private bool doneGenerating;
+
 
     //internal storage of rooms, adds in a buffer so need to adjust some variables
     //TODO: move this to just be within wang? So far it's not used anywhere else
@@ -48,6 +51,9 @@ public class RoomGenerator : MonoBehaviour
         enemySpawner = GetComponent<EnemySpawner>();
         itemSpawner = GetComponent<ItemSpawner>();
 
+        numEnemies = 0;
+        doneGenerating = false;
+
         //this is the all important call that generates the entire level once the scene is loaded
         ResetAll();
     }
@@ -65,7 +71,12 @@ public class RoomGenerator : MonoBehaviour
         PassRoomsThroughGrammar();
         GenerateEnemies();
         GenerateItems();
+        doneGenerating = true;
         //TODO: add any other needed generation layers!
+    }
+
+    public bool DoneGenerating() {
+        return doneGenerating;
     }
 
     //generates just the blank tiles for structure -- uses depth-first recursive backtracking Wang Tile implementation with both first-fit and best-fit tile algorithms
@@ -89,7 +100,11 @@ public class RoomGenerator : MonoBehaviour
         //from grammar generation, if there is a room type of "Enemy" this container object is guaranteed to exist
         //if it does not, GenerateAllEnemies won't do anything
         GameObject enemyRoomContainer = GameObject.Find("EnemyRooms");
-        enemySpawner.GenerateAllEnemies(enemyRoomContainer);
+        numEnemies = enemySpawner.GenerateAllEnemies(enemyRoomContainer);
+    }
+
+    public int GetNumEnemies() {
+        return numEnemies;
     }
 
     //handles spawning logic for items (power-ups, health pickups, etc.) in item type rooms

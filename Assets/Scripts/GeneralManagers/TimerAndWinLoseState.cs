@@ -24,11 +24,15 @@ public class TimerAndWinLoseState : MonoBehaviour
     [SerializeField] private float mediumScoreMultiplier;
     [SerializeField] private float hardScoreMultiplier;
 
+    [Header("Misc")]
+    [SerializeField] private GameObject roomGenerator;
     [SerializeField] private TextMeshProUGUI enemiesRemainingText;
-    [SerializeField] private GameObject roomContainer;
+    //[SerializeField] private GameObject roomContainer;
     [SerializeField] private string winSceneName;
     [SerializeField] private string loseSceneName;
 
+    //static because as a prefab, the initial values are written to disk and cannot be overwritten (and breaks the game)
+    //but this is some workaround I found online
     private int totalTime;
     private int totalEnemies;
     private int score;
@@ -48,14 +52,23 @@ public class TimerAndWinLoseState : MonoBehaviour
     {
         score = 0;
         PlayerPrefs.DeleteKey("score");
+        StartCoroutine(WaitToInitialize());
+    }
+
+    //uglyyyyy race condition where the timer tries to initialize before the generation is done
+    //so this forces it to wait
+    private IEnumerator WaitToInitialize() {
+        RoomGenerator rg = roomGenerator.GetComponent<RoomGenerator>();
+        while(!rg.DoneGenerating()) {
+            yield return null;
+        }
         InitializeEnemiesText();
         StartTimer();
     }
 
-    //calculates the number of enemies (once) to fill the text with
-    //TODO: can speed up just a bit by using the numEnemies data in RoomData (so only have to check each room and not every gameobject by tag)
+    //actual enemy calculations are done elsewhere, so just pull from there
     private void InitializeEnemiesText() {
-        totalEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        totalEnemies = roomGenerator.GetComponent<RoomGenerator>().GetNumEnemies();
         enemiesRemainingText.text = "Enemies Remaining: " + totalEnemies;
     }
 
@@ -98,7 +111,6 @@ public class TimerAndWinLoseState : MonoBehaviour
     }
 
     private IEnumerator TimerTick() {
-        yield return new WaitForSeconds(1.0f);
         while(totalTime > 0) {
             int minutes = totalTime / 60;
             int seconds = totalTime % 60;
